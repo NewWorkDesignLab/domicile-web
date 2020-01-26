@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:11.4
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build: .
+    volumes:
+      - .:/domicile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
