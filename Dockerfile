@@ -36,33 +36,35 @@ RUN bundle config --global frozen 1 \
 COPY . $APP_PATH
 
 RUN yarn install --check-files
-RUN bundle exec rake assets:precompile \
-    && rm -rf node_modules tmp/cache app/assets vendor/assets lib/assets spec
+RUN bundle exec rake assets:precompile
+    # && rm -rf node_modules tmp/cache app/assets vendor/assets lib/assets spec
 
 
 
-#################################################################################
-#################################################################################
-FROM ruby:2.6.5-alpine AS development
-LABEL maintainer="Tobias Bohn <info@tobiasbohn.com>"
+# #################################################################################
+# #################################################################################
+# FROM ruby:2.6.5-alpine AS development
+# LABEL maintainer="Tobias Bohn <info@tobiasbohn.com>"
 
-RUN apk add --update --no-cache \
-    postgresql-client \
-    chromium \
-    chromium-chromedriver \
-    bash \
-    tzdata
+# RUN apk add --update --no-cache \
+#     postgresql-client \
+#     yarn \
+#     nodejs \
+#     chromium \
+#     chromium-chromedriver \
+#     bash \
+#     tzdata
 
-ENV RAILS_LOG_TO_STDOUT true
-ENV RAILS_SERVE_STATIC_FILES true
-ENV EXECJS_RUNTIME Disabled
+# ENV RAILS_LOG_TO_STDOUT true
+# ENV RAILS_SERVE_STATIC_FILES true
+# ENV EXECJS_RUNTIME Disabled
 
-ENV APP_PATH=/domicile/
-WORKDIR $APP_PATH
+# ENV APP_PATH=/domicile/
+# WORKDIR $APP_PATH
 EXPOSE 3000
 
-COPY --from=dev_bundle /usr/local/bundle/ /usr/local/bundle/
-COPY --from=dev_bundle $APP_PATH $APP_PATH
+# COPY --from=dev_bundle /usr/local/bundle/ /usr/local/bundle/
+# COPY --from=dev_bundle $APP_PATH $APP_PATH
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
