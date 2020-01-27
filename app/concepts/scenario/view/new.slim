@@ -1,0 +1,11 @@
+.domicile-container
+  .domicile-card
+    .card-body
+      h1.h3.card-title NEW GAME
+      = cell(Domicile::Cell::Flash)
+
+      = form_for model, as: 'scenario', url: scenarios_path, method: 'post', html: { novalidate: 'novalidate' } do |f|
+        .form-group
+          = f.label :number_rooms, "Number of Rooms"
+          = f.select :number_rooms, class: 'form-control' do
+            = f.options_for_select [['1', 1], ['2', 2], ['3', 3]], 2
