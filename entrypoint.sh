@@ -4,6 +4,11 @@ set -e
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /domicile/tmp/pids/server.pid
 
+echo "Checking yarn installations ..."
+yarn install --check-files &> /dev/null
+echo "Precompiling assets ..."
+bin/rails assets:precompile &> /dev/null
+
 echo "Preparing Tables ..."
 rake db:create &> /dev/null
 rake db:migrate &> /dev/null
