@@ -18,11 +18,10 @@ version: '3'
 services:
   db:
     image: postgres:11.4
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+    restart: always
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    restart: always
     volumes:
       - .:/domicile
     ports:
