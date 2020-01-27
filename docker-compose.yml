@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:11.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: rails
+      POSTGRES_USER: rails
+      POSTGRES_MULTIPLE_DATABASES: domicile_web_development, domicile_web_test
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/domicile
