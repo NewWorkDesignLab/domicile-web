@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   post '/scenario', to: 'scenarios#create', as: 'create_scenario'
   get '/scenario/:id', to: 'scenarios#show', as: 'scenario'
   post '/scenario/:id', to: 'scenarios#auth', as: 'auth_scenario'
+  get '/scenario/destroy/:id', to: 'scenarios#destroy', as: 'destroy_scenario'
 end

@@ -29,3 +29,11 @@ body {
     margin-bottom: 5px;
   }
 }
+
+// SCENARIO SHOW
+.domcl-scenario-show {
+  .domcl-info {
+    @extend .row;
+    margin-top: 3.5rem;
+  }
+}

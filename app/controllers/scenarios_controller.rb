@@ -11,7 +11,7 @@ class ScenariosController < ApplicationController
         cell_object: result['contract.default']
       )
     else
-      flash[:alert] = "Something went wrong"
+      flash[:alert] = "Something went wrong."
       redirect_to index_path
     end
   end
@@ -21,6 +21,7 @@ class ScenariosController < ApplicationController
 
     if result.success?
       scenario_auth_cookie(result[:model])
+      flash[:notice] = "Successfully created Scenario."
       redirect_to scenario_path(id: result[:model].id)
     else
       render_cell(
@@ -56,6 +57,11 @@ class ScenariosController < ApplicationController
       flash[:alert] = "Scenario not found."
       redirect_to index_path
     end
+  end
+
+  def destroy
+    flash[:notice] = "Successfully closed scenario."
+    redirect_to index_path
   end
 
   private 
