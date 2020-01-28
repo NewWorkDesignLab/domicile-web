@@ -7,6 +7,8 @@ services:
       POSTGRES_USER: rails
   web:
     build: .
+    stdin_open: true
+    tty: true
     ports:
       - "3000:3000"
     depends_on:

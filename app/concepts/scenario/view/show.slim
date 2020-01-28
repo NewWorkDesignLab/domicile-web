@@ -1,0 +1,11 @@
+.domcl-container
+  .domcl-card
+    .card-body
+      h1.h3.card-title Show Scenario
+      = cell(Domicile::Cell::Flash)
+
+      .row
+        .col-6 = link_to "Open in App", 'domicile://', class: 'btn btn-primary'
+        .col-6.btn-group
+          button.btn.btn-outline-secondary disabled="disabled" = params[:id]
+          button.btn.btn-primary Copy

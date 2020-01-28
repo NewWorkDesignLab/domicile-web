@@ -1,11 +1,51 @@
-.domicile-container
-  .domicile-card
+.domcl-container
+  .domcl-card
     .card-body
-      h1.h3.card-title NEW GAME
+      h1.h3.card-title Create new Scenario
       = cell(Domicile::Cell::Flash)
 
-      = form_for model, as: 'scenario', url: scenarios_path, method: 'post', html: { novalidate: 'novalidate' } do |f|
+      = form_for model, as: 'scenario', url: create_scenario_path, method: 'post' do |f|
         .form-group
           = f.label :number_rooms, "Number of Rooms"
-          = f.select :number_rooms, class: 'form-control' do
-            = f.options_for_select [['1', 1], ['2', 2], ['3', 3]], 2
+          select class="form-control form-control-sm#{validation_class(model, :number_rooms)}" name="scenario[number_rooms]" id="scenario_number_rooms"
+            option value="1" 1 room
+            option value="2" 2 room
+            option value="3" 3 room
+          = validation_text(model, :number_rooms)
+        .form-group
+          = f.label :time_limit, "Time Limit"
+          select class="form-control form-control-sm#{validation_class(model, :time_limit)}" name="scenario[time_limit]" id="scenario_time_limit"
+            option value="5" 5 minutes
+            option value="10" 10 minutes
+            option value="15" 15 minutes
+            option value="20" 20 minutes
+            option value="no" no Limit
+          = validation_text(model, :time_limit)
+        .form-group
+          = f.label :number_damages, "Number of Damages"
+          select class="form-control form-control-sm#{validation_class(model, :number_damages)}" name="scenario[number_damages]" id="scenario_number_damages"
+            option value="2" 2 damages
+            option value="3" 3 damages
+            option value="4" 4 damages
+            option value="5" 5 damages
+            option value="6" 6 damages
+            option value="7" 7 damages
+            option value="8" 8 damages
+            option value="9" 9 damages
+            option value="10" 10 damages
+          = validation_text(model, :number_damages)
+        .form-group
+          = f.label :password, "Choose Password"
+          = f.password_field :password,
+                  class: "form-control form-control-sm#{validation_class(model, :password)}",
+                  required: 'required',
+                  minlength: '8',
+                  maxlength: '20'
+          = validation_text(model, :password)
+        .form-check
+          = f.check_box :legal, class: "form-check-input#{validation_class(model, :legal)}", required: 'required'
+          = f.label :legal, "I accept Data Privacy & AGB", class: 'form-check-label'
+          = validation_text(model, :legal)
+        .row
+          .col-6 = link_to "Back", index_path, class: 'btn btn-secondary'
+          .col-6 = f.submit "Submit", class: 'btn btn-primary'

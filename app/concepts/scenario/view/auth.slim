@@ -1,0 +1,17 @@
+.domcl-container
+  .domcl-card
+    .card-body
+      h1.h3.card-title Login
+      = cell(Domicile::Cell::Flash)
+
+      = form_for :password, url: auth_scenario_path, method: 'post' do |f|
+        .form-group
+          = f.label :password, "Password"
+          = f.password_field :password,
+                  class: 'form-control form-control-sm',
+                  required: 'required',
+                  minlength: '8',
+                  maxlength: '20'
+        .row
+          .col-6 = link_to "Back", index_path, class: 'btn btn-secondary'
+          .col-6 = f.submit "Submit", class: 'btn btn-primary'
