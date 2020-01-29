@@ -1,43 +1,27 @@
-module Api
-  class ScenariosController < ApplicationController
-    def create
+class Api::ScenariosController < ApplicationController
 
-    end
+  def create
+    scenario = {scenario: request.query_parameters}
+    result = Scenario::Api::Operation::Create.(params: scenario)
+    render json: {success: result.success?, error: result[:api_error], model: result[:api_model]}
+  end
 
-    def destroy
+  def destroy
+    render json: {success: true}
+  end
 
-    end
+  def info
+    result = Scenario::Api::Operation::Info.(params: params)
+    render json: {success: result.success?, error: result[:api_error], model: result[:api_model]}
+  end
 
-    def info
-      @return = return_error(:id_required) if params[:id].blank?
-      @return = return_error(:password_required) if params[:password].blank?
+  def exists
+    result = Scenario.exists?(id: params[:id])
+    render json: {success: result}
+  end
 
-      if Scenario.exists?(id: params[:id])
-        scenario = Scenario.find(params[:id])
-        if scenario.authenticate(params[:password])
-          @return = return_success(scenario)
-        else
-          @return = return_error(:authentification_failed)
-        end
-      else
-        @return = return_error(:record_not_found)
-      end
-
-      render json: @return
-    end
-
-    def authenticated
-
-    end
-
-    private
-
-    def return_error(error)
-      {success: false, error: error}
-    end
-
-    def return_success(result)
-      {success: true, result: result.to_json}
-    end
+  def auth
+    result = Scenario.exists?(id: params[:id]) && Scenario.find(params[:id]).authenticate(params[:password]).present?
+    render json: {success: result}
   end
 end

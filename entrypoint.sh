@@ -5,13 +5,13 @@ set -e
 rm -f /domicile/tmp/pids/server.pid
 
 echo "Checking yarn installations ..."
-yarn install --check-files &> /dev/null
+yarn install --check-files # &> /dev/null
 echo "Precompiling assets ..."
-bin/rails assets:precompile &> /dev/null
+bin/rails assets:precompile # &> /dev/null
 
 echo "Preparing Tables ..."
-rake db:create &> /dev/null
-rake db:migrate &> /dev/null
+rake db:create # &> /dev/null
+rake db:migrate # &> /dev/null
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"

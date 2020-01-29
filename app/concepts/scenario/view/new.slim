@@ -4,7 +4,7 @@
       h1.h3.card-title Create new Scenario
       = cell(Domicile::Cell::Flash)
 
-      = form_for model, as: 'scenario', url: create_scenario_path, method: 'post' do |f|
+      = form_for model, as: 'scenario', url: create_scenario_path, method: 'post', html: { novalidate: 'novalidate' } do |f|
         .form-group
           = f.label :number_rooms, "Number of Rooms"
           select class="form-control form-control-sm#{validation_class(model, :number_rooms)}" name="scenario[number_rooms]" id="scenario_number_rooms"
@@ -19,7 +19,7 @@
             option value="10" 10 minutes
             option value="15" 15 minutes
             option value="20" 20 minutes
-            option value="no" no Limit
+            option value="0" no Limit
           = validation_text(model, :time_limit)
         .form-group
           = f.label :number_damages, "Number of Damages"
@@ -43,7 +43,7 @@
                   maxlength: '20'
           = validation_text(model, :password)
         .form-check
-          = f.check_box :legal, class: "form-check-input#{validation_class(model, :legal)}", required: 'required'
+          = f.check_box :legal, class: "form-check-input#{validation_class(model, :legal)}", required: 'required', include_hidden: false
           = f.label :legal, "I accept Data Privacy & AGB", class: 'form-check-label'
           = validation_text(model, :legal)
         .row

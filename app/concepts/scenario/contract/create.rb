@@ -13,7 +13,7 @@ module Scenario::Contract
           allow_blank: false
         },
         format: {
-          with: /\A[0-9]+\z/
+          with: /\d{5}/
         }
       }
     
@@ -28,7 +28,7 @@ module Scenario::Contract
       }
     
     property :number_rooms,
-      default: 3,
+      default: '3',
       validates: {
         presence: false,
         inclusion: {
@@ -38,17 +38,17 @@ module Scenario::Contract
       }
 
     property :time_limit,
-      default: 10,
+      default: '10',
       validates: {
         presence: false,
         inclusion: {
-          in: ['5', '10', '15', '20', 'no'],
+          in: ['5', '10', '15', '20', '0'],
           allow_blank: true
         }
       }
     
     property :number_damages,
-      default: 5,
+      default: '5',
       validates: {
         presence: false,
         inclusion: {
