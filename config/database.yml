@@ -1,6 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  timeout: 5000
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: postgres
   username: rails
@@ -9,12 +10,14 @@ default: &default
 
 development:
   <<: *default
-  database: domicile_web_development
+  database: domicile_development
 
 test:
   <<: *default
-  database: domicile_web_test
+  database: domicile_test
 
 production:
   <<: *default
-  database: domicile_web_production
+  database: domicile_production
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>

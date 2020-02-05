@@ -1,17 +1,21 @@
-version: '3'
+version: '3.4'
 services:
   postgres:
     image: postgres:11.4
-    environment:
-      POSTGRES_PASSWORD: rails
-      POSTGRES_USER: rails
+    restart: always
+    volumes:
+      - db_tmp:/var/run
+
   web:
-    build: .
-    stdin_open: true
-    tty: true
+    image: domicile_web
     ports:
       - "3000:3000"
     depends_on:
       - postgres
-    volumes:
-      - .:/domicile
+
+volumes:
+  db_tmp: &tmp_fs
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs

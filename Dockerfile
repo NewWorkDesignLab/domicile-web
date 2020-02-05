@@ -1,112 +1,121 @@
-# FROM ruby:2.6.5-alpine AS builder
-# MAINTAINER Tobias Bohn <info@tobiasbohn.com>
+#######################################################################
+#  BASE  ##############################################################
+#######################################################################
+FROM ruby:2.6.5-alpine AS base
+LABEL maintainer="Tobias Bohn <info@tobiasbohn.com>"
 
-# RUN apk update \
-#     && apk add --no-cache --update \
-#         nodejs \
-#         yarn \
-#         postgresql-dev \
-#         ruby-dev \
-#         build-base \
-#         bash \
-#         tzdata \
-#         git \
-#     && gem install bundler:2.0.2
+ARG APP_PATH=/domicile/
+ENV APP_PATH=$APP_PATH
 
-# ENV APP_PATH=/domicile/
-# WORKDIR $APP_PATH
-
-# COPY Gemfile* $APP_PATH
-
-
-
-# #################################################################################
-# #################################################################################
-# FROM builder AS dev_bundle
-
-# ENV APP_PATH=/domicile/
-# WORKDIR $APP_PATH
-
-# RUN bundle config --global frozen 1 \
-#     && bundle install -j4 --retry 3 \
-#     && rm -rf /usr/local/bundle/cache/*.gem \
-#     && find /usr/local/bundle/gems/ -name "*.c" -delete \
-#     && find /usr/local/bundle/gems/ -name "*.o" -delete
-
-# COPY . $APP_PATH
-
-# RUN yarn install --check-files \
-#     && bundle exec rake assets:precompile
-#     && rm -rf node_modules tmp/cache app/assets vendor/assets lib/assets spec
-
-
-
-# #################################################################################
-# #################################################################################
-# FROM ruby:2.6.5-alpine AS development
-# LABEL maintainer="Tobias Bohn <info@tobiasbohn.com>"
-
-# RUN apk add --update --no-cache \
-#     postgresql-client \
-#     chromium \
-#     chromium-chromedriver \
-#     bash \
-#     tzdata
-
-# ENV RAILS_LOG_TO_STDOUT true
-# ENV RAILS_SERVE_STATIC_FILES true
-# ENV EXECJS_RUNTIME Disabled
-
-# ENV APP_PATH=/domicile/
-# WORKDIR $APP_PATH
-# EXPOSE 3000
-
-# COPY --from=dev_bundle /usr/local/bundle/ /usr/local/bundle/
-# COPY --from=dev_bundle $APP_PATH $APP_PATH
-
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
-
-# CMD ["rails", "server", "-b", "0.0.0.0"]
-
-
-
-
-
-
-
-
-
-
-
-FROM ruby:2.6.5-alpine AS builder
-MAINTAINER Tobias Bohn <info@tobiasbohn.com>
-
-ENV APP_PATH=/domicile/
 WORKDIR $APP_PATH
-COPY Gemfile* $APP_PATH
-COPY entrypoint.sh /usr/bin/
 
-RUN apk update \
-    && apk add --no-cache --update \
+
+
+#######################################################################
+#  BUILDER  ###########################################################
+#######################################################################
+FROM base AS builder
+
+RUN bundle config --global frozen 1 \
+    && apk --no-cache --update add \
+        build-base \
+        ruby-dev \
+        postgresql-dev \
+        tzdata \
         nodejs \
         yarn \
-        postgresql-dev \
-        ruby-dev \
-        build-base \
         bash \
-        tzdata \
         git \
-        chromium \
+    && gem install bundler:2.0.2
+
+COPY Gemfile* $APP_PATH
+
+
+
+#######################################################################
+#  DEVELOPMENT BUNDLE  ################################################
+#######################################################################
+FROM builder AS dev_bundle
+
+RUN bundle install -j4 --retry 3 \
+    && bundle clean --force \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
+
+COPY . $APP_PATH
+
+
+
+#######################################################################
+#  PRODUCTION BUNDLE  #################################################
+#######################################################################
+FROM builder AS prod_bundle
+
+RUN bundle install --without development test -j4 --retry 3 \
+    && bundle clean --force \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
+
+COPY . $APP_PATH
+
+ARG RAILS_MASTER_KEY
+RUN yarn install --check-files --prod \
+    && RAILS_ENV=production bundle exec rake assets:precompile \
+    && rm -rf node_modules tmp/cache app/assets vendor/assets lib/assets spec
+
+
+
+#######################################################################
+#  DEVELOPMENT FINAL  #################################################
+#######################################################################
+FROM base AS development
+
+EXPOSE 3000
+COPY entrypoint.sh /usr/bin/
+
+RUN apk --update --no-cache add \
+        postgresql-client \
         chromium-chromedriver \
-    && gem install bundler:2.0.2 \
-    && bundle config --global frozen 1 \
-    && bundle install \
+        chromium \
+        tzdata \
+        bash \
+        yarn \
+        nodejs \
     && chmod +x /usr/bin/entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
-COPY . $APP_PATH
-EXPOSE 3000
+COPY --from=dev_bundle /usr/local/bundle/ /usr/local/bundle/
+COPY --from=dev_bundle $APP_PATH $APP_PATH
 
+RUN yarn install --check-files
+
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
+
+
+
+#######################################################################
+#  PRODUCTION FINAL  ##################################################
+#######################################################################
+FROM base AS production
+
+ENV RAILS_ENV=production \
+    RAILS_LOG_TO_STDOUT=true \
+    RAILS_SERVE_STATIC_FILES=true \
+    EXECJS_RUNTIME=Disabled
+
+EXPOSE 3000
+COPY entrypoint.sh /usr/bin/
+
+RUN apk --update --no-cache add \
+        postgresql-client \
+        tzdata \
+        bash \
+    && chmod +x /usr/bin/entrypoint.sh
+
+COPY --from=prod_bundle /usr/local/bundle/ /usr/local/bundle/
+COPY --from=prod_bundle $APP_PATH $APP_PATH
+
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["rails", "server", "-b", "0.0.0.0"]

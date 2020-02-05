@@ -1,51 +1,52 @@
-.git
-.gitignore
-README.md
+# .dockerignore file to INCLUDE files (not exclude), as described on:
+# https://youknowfordevs.com/2018/12/07/getting-control-of-your-dockerignore-files.html
 
-#
-# OS X
-#
-.DS_Store
-.AppleDouble
-.LSOverride
-# Icon must end with two \r
-Icon
-# Thumbnails
-._*
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Exclude everything:
+*
 
-#
-# Rails
-#
-.env
-.env.sample
-*.rbc
-capybara-*.html
-log
-tmp
-db/*.sqlite3
-db/*.sqlite3-journal
-public/system
-coverage/
-spec/tmp
-**.orig
+# Now un-exclude needed files
+# Root Folders
+!app
+!bin
+!lib
 
-.bundle
+# Root Files
+!Gemfile*
+!Rakefile
+!entrypoint.sh
+!package.json
+!postcss.config.js
+!babel.config.js
+!config.ru
+!yarn.lock
 
-.ruby-version
-.ruby-gemset
+# Config Folder
+!config/environments
+!config/initializers
+!config/locales
+!config/webpack
+!config/application.rb
+!config/boot.rb
+!config/cable.yml
+!config/credentials.yml.enc
+!config/database.yml
+!config/environment.rb
+!config/puma.rb
+!config/routes.rb
+!config/spring.rb
+!config/storage.yml
+!config/webpacker.yml
 
-.rvmrc
+# DB Folder
+!db/migrate
+!db/schema.rb
+!db/seeds.rb
 
-# if using bower-rails ignore default bower_components path bower.json files
-vendor/assets/bower_components
-*.bowerrc
-bower.json
+# Public Folder
+!public/404.html
+!public/422.html
+!public/500.html
+!public/*.png
+!public/favicon.ico
+!public/robots.txt
+!public/humans.txt

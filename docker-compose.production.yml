@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  postgres:
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - /var/lib/domicile/data/db/production:/var/lib/postgresql/data
+
+  web:
+    image: domicile_web:prod
+    restart: always
+    environment:
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}

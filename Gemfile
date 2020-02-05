@@ -62,3 +62,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# changed Sprockets Version after 'Sprockets::Railtie::ManifestNeededError',
+# as described on: https://www.redmine.org/issues/32300
+gem "sprockets", "~> 3.7.2"
