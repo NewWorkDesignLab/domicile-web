@@ -1,6 +1,13 @@
 .domcl-container
   .domcl-card
     .card-body
-      h1.h3.card-title New Registration
+      h1.h3.card-title = t('concepts.user.devise.registration')
       = cell(Domicile::Cell::Flash)
+      = cell(User::Devise::Cell::Errors, model)
+
+      = form_for model, as: 'user', url: user_registration_path do |f|
+        = email_field_group(:email, model, label: 'Email:', input_options: { autofocus: 'autofocus', autocomplete: 'email'})
+        = passwort_field_group(:password, model, label: 'Passwort:', hint: 'Mindestens 8 Zeichen', input_options: { autocomplete: 'new-password'})
+        = passwort_field_group(:password_confirmation, model, label: 'Passwort wiederholen:', input_options: { autocomplete: 'new-password'})
+        = submit_button('Registrieren')
       = cell(User::Devise::Cell::Links, model)

@@ -4,4 +4,9 @@
       h1.h3.card-title = t('concepts.user.devise.login')
       = cell(Domicile::Cell::Flash)
       
+      = form_for model, as: 'user', url: user_session_path do |f|
+        = email_field_group(:email, model, label: 'Email:', hint: 'Email hint zum testen.', input_options: { autofocus: 'autofocus', autocomplete: 'email'})
+        = passwort_field_group(:password, model, label: 'Passwort:', hint: 'Auch hier ein kleiner Hint zum Testen on Ok.', input_options: { autocomplete: 'current-password'})
+        = checkbox_group(:remember_me, model, label: 'Anmeldedaten speichern?', hint: 'Häckchen setzen, wenn irgendwas.')
+        = submit_button('Anmelden')
       = cell(User::Devise::Cell::Links, model)
