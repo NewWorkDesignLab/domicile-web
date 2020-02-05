@@ -1,0 +1,19 @@
+de:
+  concepts:
+    user:
+      devise:
+        login: 'Anmelden'
+        logout: 'Abmelden'
+        register: 'Registrieren'
+        cell:
+          edit_password:
+          edit_registration:
+          links:
+          errors:
+          new_confirmation:
+          new_password:
+          new_registration:
+          new_session:
+            h1: 'Test Locales'
+          new_unlock:
+      cell:
