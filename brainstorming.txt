@@ -1,0 +1,45 @@
+A User need to login to use the page somehow.
+
+A loggedin User can create multiple Scenarios, and will see them in a Overview.
+
+A User can invite other Perople to this Scenario using a invite link.
+
+A Person do not need to be logged in to play Scenario.
+But a logged in User can also join Scenarios, which will appear in on Overview.
+
+
+
+
+
+
+
+Models:
+  - User
+    - has_many: Scenarios
+    - has_many: Executions
+    - Columns:
+      - email
+      - password
+      - registered: true/fals (if temporary user or finished registration)
+
+  - Scenario
+    - belongs_to: User
+    - has_many: Executions
+    - columns:
+      - id
+      - password
+      - number_rooms
+      - round_time
+      - number_damages
+      - multiplayable? true/false (if scenario could be played multiple times or only once oer user)
+
+  - Executions
+    - belongs_to: Scenario
+    - belongs_to: User
+    - has_many: Results
+
+  - Results
+    - belongs_to: Execution
+    - has_many: Screenshots
+    - columns:
+      - time (time needet to play scenario)
