@@ -5,7 +5,7 @@ services:
       POSTGRES_USER: rails
       POSTGRES_PASSWORD: rails
     volumes:
-      - /var/lib/domicile/data/db/development:/var/lib/postgresql/data
+      - postgres_dev_data:/var/lib/postgresql/data
 
   web:
     image: domicile_web:dev
@@ -16,6 +16,7 @@ services:
 
 volumes:
   web_node_modules:
+  postgres_dev_data:
   web_tmp: &tmp_fs
     driver: local
     driver_opts:
