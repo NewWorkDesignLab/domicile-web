@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'pages#index', as: 'index'
 
   get '/scenario', to: 'scenarios#new', as: 'new_scenario'
