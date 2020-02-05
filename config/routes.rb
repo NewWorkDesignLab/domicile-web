@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   ## USER ROUTES
   scope(path_names: {new: I18n.t('routes.misc.new'), edit: I18n.t('routes.misc.edit'), destroy: I18n.t('routes.misc.destroy')}) do
+    resources :users,
+        only: [:show],
+        path: I18n.t('routes.misc.dashboard')
+
     devise_for :users,
         path: I18n.t('routes.misc.users'),
         controllers: {
