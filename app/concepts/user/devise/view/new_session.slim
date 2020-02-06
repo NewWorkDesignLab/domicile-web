@@ -1,12 +1,21 @@
 .domcl-container
   .domcl-card
     .card-body
-      h1.h3.card-title = t('concepts.user.devise.login')
+      h1.h3.card-title = t('.h1')
       = cell(Domicile::Cell::Flash)
       
-      = form_for model, as: 'user', url: user_session_path do |f|
-        = email_field_group(:email, model, label: 'Email:', hint: 'Email hint zum testen.', input_options: { autofocus: 'autofocus', autocomplete: 'email'})
-        = passwort_field_group(:password, model, label: 'Passwort:', hint: 'Auch hier ein kleiner Hint zum Testen on Ok.', input_options: { autocomplete: 'current-password'})
-        = checkbox_group(:remember_me, model, label: 'Anmeldedaten speichern?', hint: 'Häckchen setzen, wenn irgendwas.')
-        = submit_button('Anmelden')
+      = customized_form_for model, as: 'user', url: user_session_path, html: { method: :post } do |f|
+        = f.email_field_group :email,
+                label: t('misc.labels.email'),
+                required: 'required',
+                input_options: { autofocus: 'autofocus', autocomplete: 'email'}
+        = f.password_field_group :password,
+                label: t('misc.labels.password'),
+                required: 'required',
+                input_options: { autocomplete: 'current-password'}
+        = f.checkbox_group :remember_me,
+                label: t('misc.labels.models.user.devise.new_session.save_login')
+
+        = form_required_hint
+        = f.submit(t('.h1'))
       = cell(User::Devise::Cell::Links, model)

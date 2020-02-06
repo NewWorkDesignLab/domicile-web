@@ -1,0 +1,14 @@
+de:
+  routes:
+    misc:
+      dashboard: 'uebersicht'
+      users: 'benutzer'
+      new: 'neu'
+      edit: 'bearbeiten'
+      destroy: 'löschen'
+      sign_in: 'anmelden'
+      sign_out: 'abmelden'
+      sign_up: 'registrieren'
+      password: 'passwort'
+      confirmation: 'bestaetigen'
+      cancel: 'abbrechen'

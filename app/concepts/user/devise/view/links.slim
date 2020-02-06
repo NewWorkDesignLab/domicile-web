@@ -1,21 +1,13 @@
+br
 - if params[:controller] != 'users/sessions'
-  = link_to t('concepts.user.devise.login'), new_user_session_path
+  = link_to t('concepts.user.devise.cell.new_session.h1'), new_user_session_path
   br
-
-- if request.env["devise.mapping"].registerable? && params[:controller] != 'users/registrations'
-  = link_to t('concepts.user.devise.register'), new_user_registration_path
+- if params[:controller] != 'users/registrations'
+  = link_to t('concepts.user.devise.cell.new_registration.h1'), new_user_registration_path
   br
-
-- if request.env["devise.mapping"].recoverable? && params[:controller] != 'users/passwords' && params[:controller] != 'users/registrations'
-  = link_to t('concepts.user.devise.forgot_password'), new_user_password_path
+- if params[:controller] != 'users/passwords' && params[:controller] != 'users/registrations'
+  = link_to t('concepts.user.devise.cell.new_password.link'), new_user_password_path
   br
-
-- if request.env["devise.mapping"].confirmable? && params[:controller] != 'users/confirmations'
-  = link_to "Didn't receive confirmation instructions?", new_user_confirmation_path
+- if params[:controller] != 'users/confirmations'
+  = link_to t('concepts.user.devise.cell.new_confirmation.link'), new_user_confirmation_path
   br
-
-- if request.env["devise.mapping"].lockable? && resource_class.unlock_strategy_enabled?(:email) && params[:controller] != 'users/unlocks'
-  = link_to "Didn't receive unlock instructions?", new_user_unlock_path
-  br
-
-

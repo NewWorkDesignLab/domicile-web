@@ -1,6 +1,0 @@
-- if model.errors.any?
-  div id="error_explanation"
-    h2 = t("errors.messages.not_saved", count: model.errors.count, resource: model.class.model_name.human.downcase)
-    ul
-      - model.errors.full_messages.each do |message|
-        li = message

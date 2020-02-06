@@ -1,0 +1,14 @@
+de:
+  misc:
+    labels:
+      email: 'Email:'
+      password: 'Passwort:'
+      password_confirm: 'Passwort bestätigen:'
+      password_change: 'Neues Passwort:'
+      required_field: 'Pflichtfeld'
+      models:
+        user:
+          devise:
+            new_session:
+              save_login: 'Anmeldedaten speichern?'
+

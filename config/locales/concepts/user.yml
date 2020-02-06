@@ -7,13 +7,24 @@ de:
         register: 'Registrieren'
         cell:
           edit_password:
+            h1: 'Passwort bearbeiten'
           edit_registration:
-          links:
-          errors:
+            h1: 'Account bearbeiten'
+            change_hint: 'Feld freilassen, wenn du dein Passwort nicht ändern möchtest'
+            current_password_hint: 'Änderungen müssen mit deinem aktuellen Passwort bestätigt werden'
+            password_current: 'Aktuelles Passwort:'
+            submit: 'Daten aktualisieren'
+            h2: 'Account löschen'
           new_confirmation:
+            h1: 'Bestätigungslink erneut senden'
+            submit: 'Link zusenden'
+            link: 'Bestätigungslink nicht erhalten?'
           new_password:
+            h1: 'Passwort zurücksetzen'
+            link: 'Passwort vergessen?'
           new_registration:
+            h1: 'Registrieren'
           new_session:
-            h1: 'Test Locales'
+            h1: 'Anmelden'
           new_unlock:
       cell:

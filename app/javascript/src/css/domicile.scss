@@ -1,3 +1,4 @@
+$font-size-base: 0.95rem;
 @import "~bootstrap/scss/bootstrap";
 @mixin sm {
   @include media-breakpoint-up(sm) {
@@ -20,7 +21,7 @@ body {
 .domcl-card {
   @extend .card;
   @extend .container;
-  max-width: 480px;
+  max-width: 420px;
   margin-top: 15px;
 
   .btn {

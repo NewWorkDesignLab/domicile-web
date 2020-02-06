@@ -1,13 +1,23 @@
 .domcl-container
   .domcl-card
     .card-body
-      h1.h3.card-title = t('concepts.user.devise.registration')
+      h1.h3.card-title = t('.h1')
       = cell(Domicile::Cell::Flash)
-      = cell(User::Devise::Cell::Errors, model)
 
-      = form_for model, as: 'user', url: user_registration_path do |f|
-        = email_field_group(:email, model, label: 'Email:', input_options: { autofocus: 'autofocus', autocomplete: 'email'})
-        = passwort_field_group(:password, model, label: 'Passwort:', hint: 'Mindestens 8 Zeichen', input_options: { autocomplete: 'new-password'})
-        = passwort_field_group(:password_confirmation, model, label: 'Passwort wiederholen:', input_options: { autocomplete: 'new-password'})
-        = submit_button('Registrieren')
+      = customized_form_for model, as: 'user', url: user_registration_path, html: { method: :post } do |f|
+        = f.email_field_group :email,
+                label: t('misc.labels.email'),
+                required: 'required',
+                input_options: { autofocus: 'autofocus', autocomplete: 'email'}
+        = f.password_field_group :password,
+                label: t('misc.labels.password'),
+                required: 'required',
+                input_options: { autocomplete: 'new-password'}
+        = f.password_field_group :password_confirmation,
+                label: t('misc.labels.password_confirm'),
+                required: 'required',
+                input_options: { autocomplete: 'new-password'}
+
+        = form_required_hint
+        = f.submit(t('.h1'))
       = cell(User::Devise::Cell::Links, model)
