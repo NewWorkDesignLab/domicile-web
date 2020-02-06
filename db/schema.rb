@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_120921) do
+ActiveRecord::Schema.define(version: 2020_02_06_154642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "results", force: :cascade do |t|
+    t.bigint "scenario_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["scenario_id"], name: "index_results_on_scenario_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
+  end
 
   create_table "scenarios", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -22,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_02_05_120921) do
     t.integer "number_rooms"
     t.integer "time_limit"
     t.integer "number_damages"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_scenarios_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
