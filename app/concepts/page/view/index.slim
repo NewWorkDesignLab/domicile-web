@@ -6,7 +6,8 @@
 
       p Some description Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       - if user_signed_in?
-        = link_to "My Dashboard", user_path(id: current_user[:id]), class: 'btn btn-primary'
+        = link_to "My Dashboard", user_path, class: 'btn btn-primary'
+        = link_to "Abmelden", destroy_user_session_path, method: :delete, class: 'btn btn-secondary'
       - else
         = link_to "Login", new_user_session_path, class: 'btn btn-primary'
         = link_to "Register", new_user_registration_path, class: 'btn btn-primary'

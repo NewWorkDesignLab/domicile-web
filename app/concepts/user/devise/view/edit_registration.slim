@@ -7,6 +7,7 @@
       = customized_form_for model, as: 'user', url: user_registration_path, html: { method: :put } do |f|
         = f.email_field_group :email,
                 label: t('misc.labels.email'),
+                required: 'required',
                 input_options: { autofocus: 'autofocus', autocomplete: 'email'}
         - if model.pending_reconfirmation?
           p Currently waiting confirmation for: #{model.unconfirmed_email}
@@ -17,7 +18,7 @@
         = f.password_field_group :password_confirmation,
                 label: t('misc.labels.password_confirm'),
                 input_options: { autocomplete: 'new-password'}
-         = f.password_field_group :current_password,
+        = f.password_field_group :current_password,
                 label: t('.password_current'),
                 required: 'required',
                 hint: t('.current_password_hint'),
@@ -25,5 +26,3 @@
 
         = form_required_hint
         = f.submit(t('.submit'))
-
-      h2.h4.card-title = t('.h2')

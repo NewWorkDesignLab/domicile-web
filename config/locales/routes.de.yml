@@ -1,7 +1,7 @@
 de:
   routes:
     misc:
-      dashboard: 'uebersicht'
+      dashboard: 'dashboard'
       users: 'benutzer'
       new: 'neu'
       edit: 'bearbeiten'
