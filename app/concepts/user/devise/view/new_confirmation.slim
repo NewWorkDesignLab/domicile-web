@@ -1,15 +1,10 @@
-.domcl-container
-  .domcl-card
-    .card-body
-      h1.h3.card-title = t('.h1')
-      = cell(Domicile::Cell::Flash)
-
-      = customized_form_for model, as: 'user', url: user_confirmation_path, html: { method: :post } do |f|
-        = f.email_field_group :email,
-                label: t('misc.labels.email'),
-                required: 'required',
-                input_options: { autofocus: 'autofocus', autocomplete: 'email'}
-
-        = form_required_hint
-        = f.submit(t('.submit'))
-      = cell(User::Devise::Cell::Links, model)
+h1.h4.card-title = t('.h1')
+= cell(Domicile::Cell::Flash)
+= customized_form_for model, as: 'user', url: user_confirmation_path, html: { method: :post } do |f|
+  = f.email_field_group :email,
+          label: t('misc.labels.email'),
+          required: 'required',
+          input_options: { autofocus: 'autofocus', autocomplete: 'email'}
+  = form_required_hint
+  = f.submit(t('.submit'))
+= cell(User::Devise::Cell::Links, model)

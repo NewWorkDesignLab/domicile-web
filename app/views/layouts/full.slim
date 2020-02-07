@@ -1,0 +1,16 @@
+doctype html
+html lang="#{I18n.locale}" class="full-layout"
+  head
+    meta charset="utf-8"
+    meta name="robots" content="index, follow"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = html_head
+
+    script src="#{asset_pack_path 'application.js'}"
+    link rel="stylesheet" type="text/css" href="#{asset_pack_path 'application.css'}"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+  body
+    == cell(Page::Cell::Navigation)
+    == yield
