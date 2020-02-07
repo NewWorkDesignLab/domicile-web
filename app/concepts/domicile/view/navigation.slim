@@ -1,0 +1,19 @@
+.navspacer
+nav.navbar
+  .container-xl
+    button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="#{t('.aria-button')}"
+      span = t('.button')
+
+    .collapse.navbar-collapse id="navbar-collapse"
+      ul.navbar-nav.mr-auto
+        li.nav-item.active
+          = link_to t('.dashboard'), user_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('.scenarios'), user_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('.results'), user_path, class: 'nav-link'
+      ul.navbar-nav.ml-auto
+        li.nav-item
+          = link_to t('.settings'), user_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('.logout'), destroy_user_session_path, method: :delete, class: 'nav-link', role: 'button'

@@ -16,5 +16,6 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import "controllers"
+import "bootstrap"
 import './../src/css/domicile.scss'
 import './../src/js/domicile.js'

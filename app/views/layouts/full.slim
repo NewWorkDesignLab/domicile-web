@@ -1,5 +1,5 @@
 doctype html
-html lang="#{I18n.locale}" class="full-layout"
+html lang="#{I18n.locale}" data-layout="full-layout"
   head
     meta charset="utf-8"
     meta name="robots" content="index, follow"
@@ -11,6 +11,10 @@ html lang="#{I18n.locale}" class="full-layout"
     = csrf_meta_tags
     = csp_meta_tag
 
-  body
-    == cell(Page::Cell::Navigation)
-    == yield
+  body onload="inputManager()"
+    header
+      == cell(Domicile::Cell::Navigation)
+    main
+      == yield
+    footer
+      == cell(Domicile::Cell::Footer)
