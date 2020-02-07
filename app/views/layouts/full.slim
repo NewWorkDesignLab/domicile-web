@@ -15,6 +15,7 @@ html lang="#{I18n.locale}" data-layout="full-layout"
     header
       == cell(Domicile::Cell::Navigation)
     main
-      == yield
+      .container-xl
+        == yield
     footer
       == cell(Domicile::Cell::Footer)

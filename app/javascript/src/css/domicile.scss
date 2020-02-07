@@ -9,7 +9,7 @@ $enable-responsive-font-sizes: true;
 
 // GENERAL
 body {
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   overflow-x: hidden;
   min-width: 300px;
   margin: 0;
@@ -37,6 +37,11 @@ body.using-mouse :focus {
   @extend .navbar-light;
   @extend .bg-light;
 
+  .container-xl {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .collapsing {
     transition: none;
     display: none;
@@ -57,7 +62,7 @@ body.using-mouse :focus {
 
 
 
-// STATIC PAGES
+// CARD PAGES
 .domcl-container {
   @extend .container;
 }
@@ -65,7 +70,7 @@ body.using-mouse :focus {
   @extend .card;
   @extend .container;
   max-width: 420px;
-  margin-top: 15px;
+  margin-top: 17vh;
 
   .btn {
     width: 100%;
