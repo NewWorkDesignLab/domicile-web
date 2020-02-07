@@ -14,8 +14,7 @@ html lang="#{I18n.locale}" data-layout="full-layout"
   body onload="inputManager()"
     header
       == cell(Domicile::Cell::Navigation)
-    main
-      .container-xl
-        == yield
+    main.container-xl
+      == yield
     footer
       == cell(Domicile::Cell::Footer)

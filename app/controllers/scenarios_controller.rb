@@ -5,7 +5,7 @@ class ScenariosController < ApplicationController
     render_cell(
       page_cell: Scenario::Cell::Index,
       header_cell: Scenario::Header::Cell::Index,
-      cell_object: current_user
+      cell_object: current_user.scenarios
     )
   end
 

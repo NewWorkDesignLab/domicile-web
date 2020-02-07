@@ -1,1 +1,6 @@
 h1 Scenario Index
+- if model.count <= 0
+  p No Scenarios found. Go ahead an create one...
+- else
+  - model.each_with_index do |model, index|
+    = cell(Scenario::Cell::Infocard, {scenario: model, index: index})

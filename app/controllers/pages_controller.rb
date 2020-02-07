@@ -12,14 +12,16 @@ class PagesController < ApplicationController
   def legal
     render_cell(
       page_cell: Page::Cell::Legal,
-      header_cell: Page::Header::Cell::Legal
+      header_cell: Page::Header::Cell::Legal,
+      layout: 'application'
     )
   end
 
   def privacy
     render_cell(
       page_cell: Page::Cell::Privacy,
-      header_cell: Page::Header::Cell::Privacy
+      header_cell: Page::Header::Cell::Privacy,
+      layout: 'application'
     )
   end
 

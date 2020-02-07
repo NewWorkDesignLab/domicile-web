@@ -1,0 +1,6 @@
+.card
+  .card-header = "#{model[:index] + 1}. Szenario"
+  .card-body
+    p.card-text = model[:scenario].id
+    p.card-text = model[:scenario].created_at
+    p.card-text = model[:scenario].results.count

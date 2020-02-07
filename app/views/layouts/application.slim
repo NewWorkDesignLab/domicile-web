@@ -12,7 +12,7 @@ html lang="#{I18n.locale}" data-layout="application-layout"
     = csp_meta_tag
 
   body onload="inputManager()"
-    main
+    main.container-xl
       == yield
     footer
       == cell(Domicile::Cell::Footer)
