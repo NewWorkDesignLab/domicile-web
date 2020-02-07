@@ -12,6 +12,10 @@ You will find detailed information on how to install the docker dependencies her
 * [Docker](https://docs.docker.com/install/)
 * [Docker-Compose](https://docs.docker.com/compose/install/)
 
+Currently used Versions:
+* Docker version 19.03.5, build 633a0ea838
+* docker-compose version 1.24.1, build 4667896b
+
 
 
 ### for production: generate necessary config
