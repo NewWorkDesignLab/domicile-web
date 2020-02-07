@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   root 'pages#index', as: 'index'
   get 'index.html', to: 'pages#index'
 
+  ## PAGES
+  get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
+  get '/impressum', to: 'pages#legal', as: 'legal'
+  get '/datenschutz', to: 'pages#privacy', as: 'privacy'
+
   ## USER ROUTES
   scope(path_names: {new: I18n.t('routes.misc.new'), edit: I18n.t('routes.misc.edit'), destroy: I18n.t('routes.misc.destroy')}) do
-    get I18n.t('routes.misc.dashboard'), to: 'users#show', as: 'user'
-
     devise_for :users,
         path: I18n.t('routes.misc.users'),
         controllers: {
@@ -26,17 +29,23 @@ Rails.application.routes.draw do
         }
   end
 
-  get '/scenario', to: 'scenarios#new', as: 'new_scenario'
-  post '/scenario', to: 'scenarios#create', as: 'create_scenario'
-  get '/scenario/:id', to: 'scenarios#show', as: 'scenario'
-  post '/scenario/:id', to: 'scenarios#auth', as: 'auth_scenario'
-  get '/scenario/destroy/:id', to: 'scenarios#destroy', as: 'destroy_scenario'
+  ## SCENARIO ROUTES
+  resources :scenarios, only: [:index, :new, :create, :show, :destroy]
 
-  namespace :api do
-    get '/scenario/info', to: 'scenarios#info'
-    get '/scenario/exists', to: 'scenarios#exists'
-    get '/scenario/auth', to: 'scenarios#auth'
-    get '/scenario/create', to: 'scenarios#create'
-    get '/scenario/destroy', to: 'scenarios#destroy'
-  end
+  ## RESULT ROUTES
+  resources :results, only: [:index, :show, :destroy]
+
+  # get '/scenario', to: 'scenarios#new', as: 'new_scenario'
+  # post '/scenario', to: 'scenarios#create', as: 'create_scenario'
+  # get '/scenario/:id', to: 'scenarios#show', as: 'scenario'
+  # post '/scenario/:id', to: 'scenarios#auth', as: 'auth_scenario'
+  # get '/scenario/destroy/:id', to: 'scenarios#destroy', as: 'destroy_scenario'
+
+  # namespace :api do
+  #   get '/scenario/info', to: 'scenarios#info'
+  #   get '/scenario/exists', to: 'scenarios#exists'
+  #   get '/scenario/auth', to: 'scenarios#auth'
+  #   get '/scenario/create', to: 'scenarios#create'
+  #   get '/scenario/destroy', to: 'scenarios#destroy'
+  # end
 end
