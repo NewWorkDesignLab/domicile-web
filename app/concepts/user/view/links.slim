@@ -1,9 +1,9 @@
 br
 - if params[:controller] != 'users/sessions'
-  = link_to t('concepts.user.cell.new_session.h1'), new_user_session_path
+  = link_to t('concepts.user.login'), new_user_session_path
   br
 - if params[:controller] != 'users/registrations'
-  = link_to t('concepts.user.cell.new_registration.h1'), new_user_registration_path
+  = link_to t('concepts.user.register'), new_user_registration_path
   br
 - if params[:controller] != 'users/passwords' && params[:controller] != 'users/registrations'
   = link_to t('concepts.user.cell.new_password.link'), new_user_password_path

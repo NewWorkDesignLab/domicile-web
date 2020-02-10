@@ -1,8 +1,9 @@
 de:
-  routes:
-    misc:
-      dashboard: 'dashboard'
+  misc:
+    routes:
       users: 'benutzer'
+      scenarios: 'szenarios'
+      results: 'ergebnisse'
       new: 'neu'
       edit: 'bearbeiten'
       destroy: 'löschen'
