@@ -126,7 +126,7 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
   end
 
   def submit(label, options = {})
-    options = options.merge(class: 'btn btn-primary')
+    options = options.merge(class: 'btn btn-primary mr-2 mb-2')
     options = options.merge(type: 'submit')
     @template.button_tag label, options
   end

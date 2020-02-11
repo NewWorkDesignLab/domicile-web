@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_02_11_130132) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.string "password_digest"
     t.integer "number_rooms"
     t.integer "time_limit"

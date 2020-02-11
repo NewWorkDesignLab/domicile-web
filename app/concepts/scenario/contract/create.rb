@@ -18,7 +18,7 @@ module Scenario::Contract
           allow_blank: false
         },
         format: {
-          with: /\d{5}/
+          with: /\A(\d{5})\z/
         }
       }
     property :number_rooms,
@@ -43,6 +43,14 @@ module Scenario::Contract
         inclusion: {
           in: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
           allow_blank: false
+        }
+      }
+    property :name,
+      validates: {
+        presence: false,
+        length: {
+          maximum: 255,
+          allow_blank: true
         }
       }
     property :password
