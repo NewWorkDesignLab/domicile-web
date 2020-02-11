@@ -26,3 +26,8 @@ de:
             submit: 'Szenario erstellen'
           hint:
             password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest
+  scenarios:
+    create:
+      flash:
+        create_success: Szeanrio erfolgreich erstellt
+        create_failure: Szenario konnte nicht erstellt werden. Bitte überprüfen Sie ihre Eingabe

@@ -19,21 +19,44 @@ class ScenariosController < ApplicationController
         cell_object: result['contract.default']
       )
     else
-      flash[:alert] = "Something went wrong."
+      flash[:alert] = t('errors.general')
       redirect_to index_path
     end
   end
 
   def create
-    render plain: params
+    result = Scenario::Operation::Create.trace(params: params, current_user: current_user)
+
+    puts result.wtf?
+    puts result['contract.default'].inspect
+    puts result['contract.default'].instance_variables
+
+    if result.success?
+      flash[:notice] = t('.flash.create_success')
+      redirect_to scenario_path(id: result[:model].id)
+    else
+      flash[:alert] = t('.flash.create_failure')
+      render_cell(
+        page_cell: Scenario::Cell::New,
+        header_cell: Scenario::Header::Cell::New,
+        cell_object: result['contract.default']
+      )
+    end
   end
 
   def show
-    render_cell(
-      page_cell: Scenario::Cell::Show,
-      header_cell: Scenario::Header::Cell::Show,
-      cell_object: current_user
-    )
+    result = Scenario::Operation::Present.(params: params)
+
+    if result.success?
+      render_cell(
+        page_cell: Scenario::Cell::Show,
+        header_cell: Scenario::Header::Cell::Show,
+        cell_object: result['contract.default']
+      )
+    else
+      flash[:alert] = t('errors.general')
+      redirect_to index_path
+    end
   end
 
   def destroy
@@ -50,21 +73,6 @@ class ScenariosController < ApplicationController
 
 
   # before_action :authenticate!, only: :show
-
-  # def new
-  #   result = Scenario::Operation::Present.(params: params)
-
-  #   if result.success?
-  #     render_cell(
-  #       page_cell: Scenario::Cell::New,
-  #       header_cell: Scenario::Header::Cell::New,
-  #       cell_object: result['contract.default']
-  #     )
-  #   else
-  #     flash[:alert] = "Something went wrong."
-  #     redirect_to index_path
-  #   end
-  # end
 
   # def create
   #   result = Scenario::Operation::Create.(params: params)

@@ -1,20 +1,25 @@
 class Scenario::Operation::Create < Trailblazer::Operation
   step Subprocess(Scenario::Operation::Present)
+  step :set_user!
   step :define_id!
   step Contract::Validate(key: :scenario)
   step Contract::Persist()
-  fail :alert_message!
+  fail :fail!
 
-  def define_id!(options, params:, **)
-    params[:scenario][:id]
-    while params[:scenario][:id].nil?
-      id = rand(10000..99999)
-      params[:scenario][:id] = id unless Scenario.exists?(id: id)
-    end
-    params[:scenario][:id].present?
+  def set_user!(options, current_user:, **)
+    options['contract.default'].user = current_user
   end
 
-  def alert_message!(options, **)
-    options[:flash_alert] = "Scenario Create Error"
+  def define_id!(options, **)
+    id = nil
+    while id.nil?
+      random_id = rand(10000..99999)
+      id = random_id unless Scenario.exists?(id: random_id)
+    end
+    options['contract.default'].id = id
+  end
+
+  def fail!(options, **)
+    puts "fail"
   end
 end

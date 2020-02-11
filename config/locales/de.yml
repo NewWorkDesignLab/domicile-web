@@ -107,6 +107,7 @@ de:
       month: Monat
       year: Jahr
   errors:
+    general: Etwas ist schief gegangen
     format: "%{attribute} %{message}"
     messages:
       accepted: muss akzeptiert werden
