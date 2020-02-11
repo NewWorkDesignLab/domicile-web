@@ -16,16 +16,9 @@ module Scenario::Contract
           with: /\d{5}/
         }
       }
-    
-    property :password,
-      validates: {
-        presence: true,
-        length: {
-          minimum: 8,
-          maximum: 20,
-          allow_blank: false
-        }
-      }
+
+    property :password
+    property :password_confirmation
     
     property :number_rooms,
       default: '3',

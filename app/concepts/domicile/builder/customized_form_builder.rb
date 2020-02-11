@@ -21,12 +21,16 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
   end
 
   def password_field_group(attribute, options = {})
-    options[:input_options].merge! type: 'password'
+    input_opts = options[:input_options] || {}
+    input_opts.merge! type: 'password'
+    options[:input_options] = input_opts
     text_field_group attribute, options
   end
 
   def email_field_group(attribute, options = {})
-    options[:input_options].merge! type: 'email'
+    input_opts = options[:input_options] || {}
+    input_opts.merge! type: 'email'
+    options[:input_options] = input_opts
     text_field_group attribute, options
   end
 

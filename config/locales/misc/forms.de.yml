@@ -8,6 +8,7 @@ de:
         password_current: 'Aktuelles Passwort:'
         password_change: 'Neues Passwort:'
         save_login: 'Anmeldedaten speichern?'
+        please_choose: 'Bitte auswählen'
       hint:
         password_change: 'Feld freilassen, wenn du dein Passwort nicht ändern möchtest'
         password_current: 'Änderungen müssen mit deinem aktuellen Passwort bestätigt werden'
