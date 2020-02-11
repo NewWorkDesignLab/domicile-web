@@ -1,6 +1,9 @@
-h1 Scenario Index
+h1 = t('.h1')
+= cell(Domicile::Cell::Flash)
 - if model.count <= 0
-  p No Scenarios found. Go ahead an create one...
+  p.domcl-top-space.text-center = t('.no_results')
+  .text-center = link_to t('.new_scenario'), new_scenario_path, class: 'btn btn-primary'
 - else
+  .text-right = link_to t('.new_scenario'), new_scenario_path, class: 'btn btn-primary'
   - model.each_with_index do |model, index|
     = cell(Scenario::Cell::Infocard, {scenario: model, index: index})

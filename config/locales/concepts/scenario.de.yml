@@ -2,3 +2,7 @@ de:
   concepts:
     scenario:
       cell:
+        index:
+          h1: Meine Szenarios
+          no_results: Keine Ergebnisse gefunden. Sie können in nur wenigen Schritten ein Szenario erstellen...
+          new_scenario: Neues Szenario erstellen
