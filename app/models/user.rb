@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :results
   has_many :scenarios
+  has_many :results
 
   devise :database_authenticatable,
          :registerable,

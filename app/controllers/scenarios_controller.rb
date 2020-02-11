@@ -25,11 +25,7 @@ class ScenariosController < ApplicationController
   end
 
   def create
-    result = Scenario::Operation::Create.trace(params: params, current_user: current_user)
-
-    puts result.wtf?
-    puts result['contract.default'].inspect
-    puts result['contract.default'].instance_variables
+    result = Scenario::Operation::Create.(params: params, current_user: current_user)
 
     if result.success?
       flash[:notice] = t('.flash.create_success')
