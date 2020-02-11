@@ -1,6 +1,19 @@
-.card
-  .card-header = "#{model[:index] + 1}. Szenario"
+.card.mb-2
   .card-body
-    p.card-text = model[:scenario].id
-    p.card-text = model[:scenario].created_at
-    p.card-text = model[:scenario].results.count
+    h2.h4.card-title #{model[:index] + 1}. Szenario
+    - unless scenario[:name].blank?
+      h3.h6.card-subtitle.text-muted.mb-2.domcl-oneline-nowrap = scenario[:name]
+    .row
+      .col-12
+        p.mb-0
+          strong #{t('concepts.scenario.cell.new.label.room')}
+          |  #{t('concepts.scenario.cell.new.settings.room', count: scenario[:number_rooms])}
+        p.mb-0
+          strong #{t('concepts.scenario.cell.new.label.time')}
+          |  #{t('concepts.scenario.cell.new.settings.time', count: scenario[:time_limit])}
+        p.mb-0
+          strong #{t('concepts.scenario.cell.new.label.damage')}
+          |  #{t('concepts.scenario.cell.new.settings.damage', count: scenario[:number_damages])}
+    .row.mt-1
+      .col-12.text-right
+        = link_to t('.details'), scenario_path(id: scenario[:id]), class: 'btn btn-primary', role: 'button'

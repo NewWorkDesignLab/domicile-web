@@ -25,6 +25,11 @@ body.using-mouse :focus {
 .domcl-top-space {
   margin-top: 2rem;
 }
+.domcl-oneline-nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
 
 // NAVIGATION
