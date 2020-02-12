@@ -41,8 +41,8 @@ body.using-mouse :focus {
   @extend .fixed-top;
   @extend .navbar-expand-md;
   @extend .container-fluid;
-  @extend .navbar-light;
-  @extend .bg-light;
+  @extend .navbar-dark;
+  @extend .bg-dark;
 
   .container-xl {
     padding-left: 0;
@@ -56,14 +56,6 @@ body.using-mouse :focus {
 
   .navbar-toggler {
     border: 0px;
-
-    span {
-      @include font-size(1rem);
-      display: block;
-      margin: 0;
-      padding: .5rem 1rem;
-      color: rgba(0,0,0,0.9);
-    }
   }
 }
 

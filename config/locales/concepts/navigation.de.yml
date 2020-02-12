@@ -3,7 +3,6 @@ de:
     domicile:
       cell:
         navigation:
-          button: Menü
           aria-button: Menüansicht wechseln
           dashboard: Dashboard
           scenarios: Meine Szenarios

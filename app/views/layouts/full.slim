@@ -7,6 +7,7 @@ html lang="#{I18n.locale}" data-layout="full-layout"
     = html_head
 
     script src="#{asset_pack_path 'application.js'}"
+    script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"
     link rel="stylesheet" type="text/css" href="#{asset_pack_path 'application.css'}"
     = csrf_meta_tags
     = csp_meta_tag
@@ -18,3 +19,5 @@ html lang="#{I18n.locale}" data-layout="full-layout"
       == yield
     footer
       == cell(Domicile::Cell::Footer)
+    javascript:
+      feather.replace()
