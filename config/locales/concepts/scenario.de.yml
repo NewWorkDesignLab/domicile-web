@@ -25,6 +25,7 @@ de:
             time: 'Zeitlimit:'
             damage: 'Anzahl Schäden:'
             name: 'Name:'
+            id: 'Szenario ID:'
             submit: 'Szenario erstellen'
           hint:
             password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest

@@ -26,14 +26,26 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    render plain: params
+    result = Participation::Operation::Create.(params: params, current_user: current_user)
+
+    if result.success?
+      flash[:notice] = t('.flash.create_success')
+      redirect_to participation_path(id: result[:model].id)
+    else
+      flash[:alert] = result['contract.default'].errors.messages[:user]&.first || t('.flash.create_failure')
+      render_cell(
+        page_cell: Participation::Cell::New,
+        header_cell: Participation::Header::Cell::New,
+        cell_object: result['contract.default']
+      )
+    end
   end
 
   def show
     render_cell(
       page_cell: Participation::Cell::Show,
       header_cell: Participation::Header::Cell::Show,
-      cell_object: current_user
+      cell_object: current_user.participations.find_by(id: params[:id])
     )
   end
 

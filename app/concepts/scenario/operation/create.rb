@@ -4,7 +4,6 @@ class Scenario::Operation::Create < Trailblazer::Operation
   step :define_id!
   step Contract::Validate(key: :scenario)
   step Contract::Persist()
-  fail :fail!
 
   def set_user!(options, current_user:, **)
     options['contract.default'].user = current_user
@@ -17,9 +16,5 @@ class Scenario::Operation::Create < Trailblazer::Operation
       id = random_id unless Scenario.exists?(id: random_id)
     end
     options['contract.default'].id = id
-  end
-
-  def fail!(options, **)
-    puts "fail"
   end
 end
