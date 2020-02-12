@@ -34,6 +34,13 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
     text_field_group attribute, options
   end
 
+  def number_field_group(attribute, options = {})
+    input_opts = options[:input_options] || {}
+    input_opts.merge! type: 'number'
+    options[:input_options] = input_opts
+    text_field_group attribute, options
+  end
+
 
 
   def checkbox_group(attribute, options = {})

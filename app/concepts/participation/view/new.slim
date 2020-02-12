@@ -1,2 +1,19 @@
-h1 Particip New
+h1 = t('.h1')
 = cell(Domicile::Cell::Flash)
+
+= customized_form_for model, as: 'participation', url: participations_path, method: 'post' do |f|
+  .row.domcl-top-space
+    .col-12.col-sm-6
+      = f.number_field_group :scenario_id,
+              label: t('.label.scenario'),
+              hint: t('.hint.scenario'),
+              required: 'required'
+    .col-12.col-sm-6
+      = f.password_field_group :password,
+              label: t('misc.form.label.password'),
+              hint: t('.hint.password')
+  .row.domcl-top-space
+    .col-12
+      = form_required_hint
+      .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
+        = f.submit(t('.label.submit'), class: 'mr-2')

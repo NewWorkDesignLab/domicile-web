@@ -8,3 +8,10 @@ de:
           new_participation: Einem Szenario beitreten
           details: Details
         new:
+          h1: Einem Szenario beitreten
+          label:
+            scenario: 'Szenario ID:'
+            submit: Szenario beitreten
+          hint:
+            scenario: Bitte gebe die ID des Szenarios ein, dem du beitreten möchtest (z.B. 32153)
+            password: Bitte gebe das Passwort des Szenarios ein. Lasse das Feld frei, wenn es nicht mit einem Passwort versehen ist

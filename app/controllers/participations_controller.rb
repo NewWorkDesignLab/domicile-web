@@ -11,11 +11,18 @@ class ParticipationsController < ApplicationController
   end
 
   def new
-    render_cell(
-      page_cell: Participation::Cell::New,
-      header_cell: Participation::Header::Cell::New,
-      cell_object: current_user
-    )
+    result = Participation::Operation::Present.(params: params)
+
+    if result.success?
+      render_cell(
+        page_cell: Participation::Cell::New,
+        header_cell: Participation::Header::Cell::New,
+        cell_object: result['contract.default']
+      )
+    else
+      flash[:alert] = t('errors.general')
+      redirect_to index_path
+    end
   end
 
   def create
