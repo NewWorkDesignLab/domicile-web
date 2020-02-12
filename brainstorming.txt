@@ -12,68 +12,29 @@ But a logged in User can also join Scenarios, which will appear in on Overview.
 
 
 
-
-Models:
-  - User
-    - has_many: Scenarios
-    - has_many: Executions
-    - Columns:
-      - email
-      - password
-      - registered: true/fals (if temporary user or finished registration)
-
-  - Scenario
-    - belongs_to: User
-    - has_many: Executions
-    - columns:
-      - id
-      - password
-      - number_rooms
-      - round_time
-      - number_damages
-      - multiplayable? true/false (if scenario could be played multiple times or only once oer user)
-
-  - Executions
-    - belongs_to: Scenario
-    - belongs_to: User
-    - has_many: Results
-
-  - Results
-    - belongs_to: Execution
-    - has_many: Screenshots
-    - columns:
-      - time (time needet to play scenario)
-
-
-
 class User < ApplicationRecord
   has_many :scenarios
-  has_many :results
+  has_many :joinings
+  has_many :joined_scenarios, through: :joinings, source: :scenario
 end
 
 class Scenario < ApplicationRecord
   belongs_to :user
+  has_many :joinings
+  has_many :users, through: :joinings
+end
+
+class Joining < ApplicationRecord
+  belongs_to :user
+  belongs_to :scenario
   has_many :results
 end
 
 class Result < ApplicationRecord
-  belongs_to :user
-  belongs_to :scenario
+  belongs_to :joining
 end
 
-class MigrationName < ActiveRecord::Migration[6.0]
-  def change
-    create_table :users do |t|
-
-    end
-
-    create_table :scenarios do |t|
-      t.belongs_to :user
-    end
-
-    create_table :results do |t|
-      t.belongs_to user
-      t.belongs_to scenario
-    end
-  end
-end
+rails generate model user
+rails generate model scenario user:references
+rails generate model joining user:references scenario:references
+rails generate model result joining:references

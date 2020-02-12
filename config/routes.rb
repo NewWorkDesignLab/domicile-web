@@ -31,10 +31,19 @@ Rails.application.routes.draw do
         }
 
     ## SCENARIO ROUTES
-    resources :scenarios, only: [:index, :new, :create, :show, :destroy], path: I18n.t('misc.routes.scenarios')
+    resources :scenarios, only: [:index, :new, :create, :show, :destroy], path: I18n.t('misc.routes.scenarios') do
+      ## PARTICIPATION ROUTES
+      resources :participations, only: [:index, :show], path: I18n.t('misc.routes.participations'), controller: 'scenarios/participations' do
+        ## RESULT ROUTES
+        resources :results, only: [:index, :show], path: I18n.t('misc.routes.results'), controller: 'scenarios/results'
+      end
+    end
 
-    ## RESULT ROUTES
-    resources :results, only: [:index, :show, :destroy], path: I18n.t('misc.routes.results')
+    ## PARTICIPATION ROUTES
+    resources :participations, only: [:index, :new, :create, :show, :destroy], path: I18n.t('misc.routes.participations') do
+      ## RESULT ROUTES
+      resources :results, only: [:index, :show, :destroy], path: I18n.t('misc.routes.results')
+    end
   end
 
   # get '/scenario', to: 'scenarios#new', as: 'new_scenario'

@@ -3,6 +3,7 @@ de:
     routes:
       users: 'benutzer'
       scenarios: 'szenarios'
+      participations: 'teilnahmen'
       results: 'ergebnisse'
       new: 'neu'
       edit: 'bearbeiten'
