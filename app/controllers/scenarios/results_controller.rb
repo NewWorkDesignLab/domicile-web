@@ -1,5 +1,6 @@
 class Scenarios::ResultsController < ApplicationController
   before_action :authenticate_user!
+  before_action -> { check_scenario_accessability!(params[:scenario_id]) }
 
   def show
     render_cell(

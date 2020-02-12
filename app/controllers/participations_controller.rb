@@ -1,11 +1,12 @@
 class ParticipationsController < ApplicationController
   before_action :authenticate_user!
+  before_action -> { check_participation_accessability!(params[:id]) }
 
   def index
     render_cell(
       page_cell: Participation::Cell::Index,
       header_cell: Participation::Header::Cell::Index,
-      cell_object: current_user
+      cell_object: current_user.participations
     )
   end
 
