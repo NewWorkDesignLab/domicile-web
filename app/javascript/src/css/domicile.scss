@@ -68,8 +68,11 @@ body.using-mouse :focus {
 .domcl-card {
   @extend .card;
   @extend .container;
+  @include sm {
+    margin-top: 17vh;
+  }
+  margin-top: 1rem;
   max-width: 420px;
-  margin-top: 17vh;
 
   .btn {
     width: 100%;

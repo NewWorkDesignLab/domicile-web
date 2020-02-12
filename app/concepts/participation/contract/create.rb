@@ -31,7 +31,7 @@ module Participation::Contract
         errors.add(:user, I18n.t('activerecord.errors.models.participation.user.already_participated'))
       end
 
-      if Scenario.exists?(id: scenario_id) && !Scenario.find(scenario_id).authenticate(password)
+      if Scenario.exists?(id: scenario_id) && Scenario.find(scenario_id).password_digest.present? && !Scenario.find(scenario_id).authenticate(password)
         errors.add(:password,I18n.t('activerecord.errors.models.participation.user.auth_failed'))
       end
     end
