@@ -9,4 +9,4 @@ h1 = t('.h1')
   .row.domcl-top-space
     - model.each_with_index do |model, index|
       .col-12.col-sm-6
-        = cell(Scenario::Cell::Infocard, {scenario: model, index: index})
+        = cell(Scenario::Cell::Card, {scenario: model, index: index})
