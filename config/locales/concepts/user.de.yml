@@ -1,0 +1,18 @@
+de:
+  concepts:
+    user:
+      login: 'Anmelden'
+      register: 'Registrieren'
+      cell:
+        edit_password:
+          h1: 'Passwort bearbeiten'
+        edit_registration:
+          h1: 'Account bearbeiten'
+          submit: 'Daten aktualisieren'
+        new_confirmation:
+          h1: 'Bestätigungslink erneut senden'
+          submit: 'Link zusenden'
+          link: 'Bestätigungslink nicht erhalten?'
+        new_password:
+          h1: 'Passwort zurücksetzen'
+          link: 'Passwort vergessen?'

@@ -1,0 +1,12 @@
+h1 = t('.h1')
+= cell(Domicile::Cell::Flash)
+
+- if model.count <= 0
+  p.domcl-top-space.text-center = t('.no_results')
+  .text-center = link_to t('.new_participation'), new_participation_path, class: 'btn btn-primary'
+- else
+  .text-left = link_to t('.new_participation'), new_participation_path, class: 'btn btn-primary'
+  .row.domcl-top-space
+    - model.each_with_index do |model, index|
+      .col-12.col-sm-6
+        = cell(Participation::Cell::Card, {participation: model, index: index})

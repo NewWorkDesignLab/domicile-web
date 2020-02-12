@@ -10,18 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_120921) do
+ActiveRecord::Schema.define(version: 2020_02_12_115338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "scenarios", force: :cascade do |t|
+  create_table "participations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "scenario_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["scenario_id"], name: "index_participations_on_scenario_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.bigint "participation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["participation_id"], name: "index_results_on_participation_id"
+  end
+
+  create_table "scenarios", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.string "password_digest"
     t.integer "number_rooms"
     t.integer "time_limit"
     t.integer "number_damages"
+    t.index ["user_id"], name: "index_scenarios_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +65,8 @@ ActiveRecord::Schema.define(version: 2020_02_05_120921) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "participations", "scenarios"
+  add_foreign_key "participations", "users"
+  add_foreign_key "results", "participations"
+  add_foreign_key "scenarios", "users"
 end

@@ -3,6 +3,11 @@ require "reform/form/validation/unique_validator"
 
 module Scenario::Contract
   class Create < Reform::Form
+    property :user,
+      parse: false,
+      validates: {
+        presence: true
+      }
     property :id,
       validates: {
         presence: true,
@@ -13,57 +18,42 @@ module Scenario::Contract
           allow_blank: false
         },
         format: {
-          with: /\d{5}/
+          with: /\A(\d{5})\z/
         }
       }
-    
-    property :password,
+    property :number_rooms,
       validates: {
         presence: true,
-        length: {
-          minimum: 8,
-          maximum: 20,
-          allow_blank: false
-        }
-      }
-    
-    property :number_rooms,
-      default: '3',
-      validates: {
-        presence: false,
         inclusion: {
           in: ['1', '2', '3'],
-          allow_blank: true
-        }
-      }
-
-    property :time_limit,
-      default: '10',
-      validates: {
-        presence: false,
-        inclusion: {
-          in: ['5', '10', '15', '20', '0'],
-          allow_blank: true
-        }
-      }
-    
-    property :number_damages,
-      default: '5',
-      validates: {
-        presence: false,
-        inclusion: {
-          in: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
-          allow_blank: true
-        }
-      }
-    
-    property :legal,
-      validates: {
-        presence: true,
-        inclusion: {
-          in: ['1'],
           allow_blank: false
         }
       }
+    property :time_limit,
+      validates: {
+        presence: true,
+        inclusion: {
+          in: ['0', '5', '10', '15', '20'],
+          allow_blank: false
+        }
+      }
+    property :number_damages,
+      validates: {
+        presence: true,
+        inclusion: {
+          in: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
+          allow_blank: false
+        }
+      }
+    property :name,
+      validates: {
+        presence: false,
+        length: {
+          maximum: 255,
+          allow_blank: true
+        }
+      }
+    property :password
+    property :password_confirmation
   end
 end

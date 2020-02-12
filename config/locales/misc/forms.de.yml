@@ -1,0 +1,16 @@
+de:
+  misc:
+    form:
+      label:
+        email: 'Email:'
+        password: 'Passwort:'
+        password_confirm: 'Passwort bestätigen:'
+        password_current: 'Aktuelles Passwort:'
+        password_change: 'Neues Passwort:'
+        save_login: 'Anmeldedaten speichern?'
+        please_choose: 'Bitte auswählen'
+      hint:
+        password_change: 'Feld freilassen, wenn du dein Passwort nicht ändern möchtest'
+        password_current: 'Änderungen müssen mit deinem aktuellen Passwort bestätigt werden'
+      aria:
+        button_toolbar: Toolbar mit mehreren Schaltflächen

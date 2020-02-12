@@ -1,0 +1,30 @@
+de:
+  concepts:
+    participation:
+      cell:
+        index:
+          h1: Meine Teilnahmen
+          no_results: Keine Ergebnisse gefunden. Sie können in nur wenigen Schritten einem Szenario beitreten...
+          new_participation: Einem Szenario beitreten
+          details: Details
+        new:
+          h1: Einem Szenario beitreten
+          label:
+            scenario: 'Szenario ID:'
+            submit: Szenario beitreten
+          hint:
+            scenario: Bitte gebe die ID des Szenarios ein, dem du beitreten möchtest (z.B. 32153)
+            password: Bitte gebe das Passwort des Szenarios ein. Lasse das Feld frei, wenn es nicht mit einem Passwort versehen ist
+  participations:
+    create:
+      flash:
+        create_success: Szeanrio erfolgreich beigetreten
+        create_failure: Szenario konnte nicht beigetreten werden. Bitte überprüfen Sie ihre Eingabe
+  activerecord:
+    errors:
+      models:
+        participation:
+          user:
+            already_participated: Sie sind diesem Szenario bereits beigetreten
+            model_not_found: Szenario existiert nicht
+            auth_failed: Passwort nicht korrekt

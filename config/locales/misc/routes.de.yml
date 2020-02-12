@@ -1,0 +1,16 @@
+de:
+  misc:
+    routes:
+      users: 'benutzer'
+      scenarios: 'szenarios'
+      participations: 'teilnahmen'
+      results: 'ergebnisse'
+      new: 'neu'
+      edit: 'bearbeiten'
+      destroy: 'löschen'
+      sign_in: 'anmelden'
+      sign_out: 'abmelden'
+      sign_up: 'registrieren'
+      password: 'passwort'
+      confirmation: 'bestaetigen'
+      cancel: 'abbrechen'

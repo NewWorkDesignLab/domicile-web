@@ -1,0 +1,23 @@
+doctype html
+html lang="#{I18n.locale}" data-layout="full-layout"
+  head
+    meta charset="utf-8"
+    meta name="robots" content="index, follow"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = html_head
+
+    script src="#{asset_pack_path 'application.js'}"
+    script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"
+    link rel="stylesheet" type="text/css" href="#{asset_pack_path 'application.css'}"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+  body onload="inputManager()"
+    header
+      == cell(Domicile::Cell::Navigation)
+    main.container-xl
+      == yield
+    footer
+      == cell(Domicile::Cell::Footer)
+    javascript:
+      feather.replace()

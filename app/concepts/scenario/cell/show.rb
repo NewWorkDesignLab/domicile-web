@@ -1,7 +1,5 @@
 module Scenario::Cell
   class Show < Domicile::Cell::Base
-    def scenario
-      Scenario.find_by(id: params[:id])
-    end
+    include Domicile::Util::Translation
   end
 end

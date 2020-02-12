@@ -1,0 +1,37 @@
+de:
+  concepts:
+    scenario:
+      cell:
+        index:
+          h1: Meine Szenarios
+          no_results: Keine Ergebnisse gefunden. Sie können in nur wenigen Schritten ein Szenario erstellen...
+          new_scenario: Neues Szenario erstellen
+          details: Details
+        new:
+          h1: Neues Szenario
+          settings:
+            room:
+              one: ein Raum
+              other: '%{count} Räume'
+            time:
+              zero: kein Zeitlimit
+              one: eine Minute
+              other: '%{count} Minuten'
+            damage:
+              one: ein Schaden
+              other: '%{count} Schäden'
+          label:
+            room: 'Anzahl Räume:'
+            time: 'Zeitlimit:'
+            damage: 'Anzahl Schäden:'
+            name: 'Name:'
+            id: 'Szenario ID:'
+            submit: 'Szenario erstellen'
+          hint:
+            password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest
+            name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden
+  scenarios:
+    create:
+      flash:
+        create_success: Szeanrio erfolgreich erstellt
+        create_failure: Szenario konnte nicht erstellt werden. Bitte überprüfen Sie ihre Eingabe

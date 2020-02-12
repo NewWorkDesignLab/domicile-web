@@ -1,0 +1,11 @@
+de:
+  concepts:
+    domicile:
+      cell:
+        navigation:
+          aria-button: Menüansicht wechseln
+          dashboard: Dashboard
+          scenarios: Meine Szenarios
+          results: Meine Teilnahmen
+          settings: Einstellungen
+          logout: Abmelden

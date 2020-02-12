@@ -1,0 +1,18 @@
+h1.h4.card-title = t('concepts.user.register')
+= cell(Domicile::Cell::Flash)
+= customized_form_for model, as: 'user', url: user_registration_path, html: { method: :post } do |f|
+  = f.email_field_group :email,
+          label: t('misc.form.label.email'),
+          required: 'required',
+          input_options: { autofocus: 'autofocus', autocomplete: 'email'}
+  = f.password_field_group :password,
+          label: t('misc.form.label.password'),
+          required: 'required',
+          input_options: { autocomplete: 'new-password'}
+  = f.password_field_group :password_confirmation,
+          label: t('misc.form.label.password_confirm'),
+          required: 'required',
+          input_options: { autocomplete: 'new-password'}
+  = form_required_hint
+  = f.submit(t('concepts.user.register'))
+= cell(User::Cell::Links, model)
