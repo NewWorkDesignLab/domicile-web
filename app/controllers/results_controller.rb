@@ -1,14 +1,6 @@
 class ResultsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    render_cell(
-      page_cell: Results::Cell::Index,
-      header_cell: Results::Header::Cell::Index,
-      cell_object: current_user
-    )
-  end
-
   def show
     render_cell(
       page_cell: Results::Cell::Show,

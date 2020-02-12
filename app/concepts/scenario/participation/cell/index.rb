@@ -1,4 +1,4 @@
-module Scenario::Header::Cell
+module Scenario::Participation::Cell
   class Index < Domicile::Cell::Base
     include Domicile::Util::Translation
   end
