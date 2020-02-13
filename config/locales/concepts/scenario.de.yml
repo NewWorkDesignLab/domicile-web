@@ -6,7 +6,6 @@ de:
           h1: Meine Szenarios
           no_results: Keine Ergebnisse gefunden. Sie können in nur wenigen Schritten ein Szenario erstellen...
           new_scenario: Neues Szenario erstellen
-          details: Details
         new:
           h1: Neues Szenario
           settings:
@@ -33,9 +32,22 @@ de:
         show:
           h1: Mein Szenario - Übersicht
           h2: Szenario
-          link_my_participation: Zu meiner Teilnahme
-          settings: 'Übersicht der Einstellungen:'
-          statistics: 'Statistiken:'
+          h3:
+            settings: 'Übersicht der Einstellungen:'
+            statistics: 'Statistiken:'
+            invite: Benutzer einladen
+            users: Übersicht der Teilnehmer
+            manage: Szenario managen
+          link:
+            my_participation: Zu meiner Teilnahme
+            destroy: Dieses Szenario löschen
+          confirm:
+            destroy: Möchtest du dieses Szenario wirklich löschen?
+          table:
+            user: Benutzer
+            created_at: Beigetreten
+            actions: Aktionen
+            no_entry: Noch keine Teilnehmer vorhanden
         statistics:
           label:
             created_at: 'Erstellt am:'
