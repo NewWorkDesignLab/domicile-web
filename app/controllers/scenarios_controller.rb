@@ -49,6 +49,17 @@ class ScenariosController < ApplicationController
     )
   end
 
+  def edit
+    render_cell(
+      page_cell: Scenario::Cell::Edit,
+      header_cell: Scenario::Header::Cell::Edit
+    )
+  end
+
+  def update
+    render plain: params
+  end
+
   def destroy
     render plain: params
   end

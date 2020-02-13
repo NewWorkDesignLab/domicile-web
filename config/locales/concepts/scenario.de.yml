@@ -26,6 +26,7 @@ de:
             name: 'Name:'
             id: 'Szenario ID:'
             submit: 'Szenario erstellen'
+            settings: Erweiterte Einstellungen
           hint:
             password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest
             name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden
@@ -41,6 +42,7 @@ de:
           link:
             my_participation: Zu meiner Teilnahme
             destroy: Dieses Szenario löschen
+            edit: Szenario bearbeiten
           confirm:
             destroy: Möchtest du dieses Szenario wirklich löschen?
           table:

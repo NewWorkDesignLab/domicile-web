@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         }
 
     ## SCENARIO ROUTES
-    resources :scenarios, only: [:index, :new, :create, :show, :destroy], path: I18n.t('misc.routes.scenarios') do
+    resources :scenarios, path: I18n.t('misc.routes.scenarios') do
       ## PARTICIPATION ROUTES
       resources :participations, only: [:show], path: I18n.t('misc.routes.participations'), controller: 'scenarios/participations' do
         ## RESULT ROUTES

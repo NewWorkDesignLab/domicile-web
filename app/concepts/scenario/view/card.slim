@@ -5,7 +5,7 @@
       h3.h6.card-subtitle.text-muted.mb-2.domcl-oneline-nowrap = scenario[:name]
     .row
       .col-12
-        = cell(Scenario::Cell::Settings, scenario)
+        = cell(Scenario::Cell::Statistics, scenario)
     .row.mt-1
       .col-12.text-right
         = link_to t('misc.details'), scenario_path(id: scenario[:id]), class: 'btn btn-primary', role: 'button'
