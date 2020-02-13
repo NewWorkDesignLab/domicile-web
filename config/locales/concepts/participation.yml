@@ -14,6 +14,29 @@ de:
           hint:
             scenario: Bitte gebe die ID des Szenarios ein, dem du beitreten möchtest (z.B. 32153)
             password: Bitte gebe das Passwort des Szenarios ein. Lasse das Feld frei, wenn es nicht mit einem Passwort versehen ist
+        show:
+          h1: Ihre Teilnahme am Szenario
+          h3:
+            settings: 'Übersicht des Szenarios:'
+            statistics: 'Statistiken:'
+            execute: Szenario ausführen
+            result: Ergebnisse
+            manage: Teilnahme beenden
+          link:
+            destroy: Teilnahme am Szenario beenden
+          confirm:
+            destroy: Möchtest du die Teilnahme an diesem Szenario wirklich beenden?
+          table:
+            created_at: Ausführung
+            result: Ergebniss
+            actions: Aktionen
+            no_entry: Sie haben dieses Szenario noch nicht ausgeführt
+          execute_text: Nachdem Sie einem Szenario beigetreten sind, können Sie es in der Domicile-Android App ausführen. Downloaden Sie dazu die App aus dem Google Play Store und folgen den Anweisungen in der App. Falls Sie die App bereits installiert haben, können Sie das Szenario direkt öffnen.
+        statistics:
+          label:
+            created_at: 'Beigetreten am:'
+            creator: 'Erstellt von:'
+            results_count: 'Anzahl Ausführungen:'
   participations:
     create:
       flash:

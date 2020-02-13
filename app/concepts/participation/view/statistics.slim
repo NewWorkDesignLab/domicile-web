@@ -1,0 +1,9 @@
+p.mb-0
+  strong #{t('.label.created_at')}
+  |  #{l(participation[:created_at], format: :short)}
+p.mb-0
+  strong #{t('.label.creator')}
+  |  #{participation.scenario.user[:email]}
+p.mb-0
+  strong #{t('.label.results_count')}
+  |  #{result_count}

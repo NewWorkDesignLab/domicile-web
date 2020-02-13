@@ -3,17 +3,17 @@ h2.h3.text-muted = scenario[:name].presence || t('.h2')
 = cell(Domicile::Cell::Flash)
 
 .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
-  = link_to t('misc.back_overview'), scenarios_path, class: 'btn btn-secondary', role: 'button'
+  = link_to t('misc.back_overview'), scenarios_path, class: 'btn btn-outline-secondary', role: 'button'
   - if current_user.participations.exists?(scenario_id: scenario[:id])
     - participation = current_user.participations.find_by(scenario_id: scenario[:id])
     = link_to t('.link.my_participation'),
             participation_path(id: participation[:id]),
-            class: 'btn btn-primary',
+            class: 'btn btn-outline-primary',
             role: 'button'
   - else
     = link_to t('concepts.participation.cell.new.label.submit'),
             participations_path(params: { participation: {scenario_id: scenario[:id]} }),
-            class: 'btn btn-primary',
+            class: 'btn btn-outline-primary',
             role: 'button',
             method: :post
 
@@ -30,6 +30,7 @@ h2.h3.text-muted = scenario[:name].presence || t('.h2')
 .row.domcl-top-space
   .col-12
     h3.h4 = t('.h3.invite')
+    p = t('.invite_text')
 
 
 .row.domcl-top-space

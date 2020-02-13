@@ -29,7 +29,7 @@ de:
             settings: Erweiterte Einstellungen
           hint:
             password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest
-            name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden
+            name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden. Der Name ist nur für Sie selbst sichtbar
         show:
           h1: Mein Szenario - Übersicht
           h2: Szenario
@@ -49,7 +49,8 @@ de:
             user: Benutzer
             created_at: Beigetreten
             actions: Aktionen
-            no_entry: Noch keine Teilnehmer vorhanden
+            no_entry: Es sind noch keine Teilnehmer vorhanden
+          invite_text: Nachdem Sie ein Szenario erstellt haben, können Nutzer diesem Szenario beitreten. Geben Sie dazu entweder die ID des Szenarios oder den Einladungslink weiter. Falls Sie ein Passwort vergeben haben, wird dieses zum beitreten benötigt.
         statistics:
           label:
             created_at: 'Erstellt am:'
