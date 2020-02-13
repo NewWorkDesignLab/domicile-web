@@ -1,5 +1,5 @@
 module Scenario::Cell
-  class Show < Domicile::Cell::Base
+  class Settings < Domicile::Cell::Base
     include Domicile::Util::Translation
 
     def scenario

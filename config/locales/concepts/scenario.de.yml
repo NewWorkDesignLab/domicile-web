@@ -30,6 +30,17 @@ de:
           hint:
             password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest
             name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden
+        show:
+          h1: Mein Szenario - Übersicht
+          h2: Szenario
+          link_my_participation: Zu meiner Teilnahme
+          settings: 'Übersicht der Einstellungen:'
+          statistics: 'Statistiken:'
+        statistics:
+          label:
+            created_at: 'Erstellt am:'
+            participations_count: 'Anzahl Teilnehmer:'
+            results_count: 'Anzahl Ausführungen:'
   scenarios:
     create:
       flash:
