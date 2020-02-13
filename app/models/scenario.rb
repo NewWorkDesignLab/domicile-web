@@ -4,5 +4,4 @@ class Scenario < ApplicationRecord
   has_many :users, through: :participations
 
   has_secure_password validations: false
-  attr_accessor :password_confirmation
 end
