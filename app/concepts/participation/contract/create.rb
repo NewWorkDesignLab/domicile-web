@@ -25,14 +25,17 @@ module Participation::Contract
     validate do
       if !Scenario.exists?(id: scenario_id)
         errors.add(:scenario_id, I18n.t('activerecord.errors.models.participation.user.model_not_found'))
-      end
+      else
+        if Participation.where(user_id: user[:id]).where(scenario_id: scenario_id).present?
+          errors.add(:user, I18n.t('activerecord.errors.models.participation.user.already_participated'))
+        end
 
-      if Participation.where(user_id: user[:id]).where(scenario_id: scenario_id).present?
-        errors.add(:user, I18n.t('activerecord.errors.models.participation.user.already_participated'))
-      end
-
-      if Scenario.exists?(id: scenario_id) && Scenario.find(scenario_id).password_digest.present? && !Scenario.find(scenario_id).authenticate(password)
-        errors.add(:password,I18n.t('activerecord.errors.models.participation.user.auth_failed'))
+        scenario = Scenario.find(scenario_id)
+        unless user[:id] == scenario.user[:id] # do not check for passwort if joining own scenario
+          if scenario.password_digest.present? && !scenario.authenticate(password)
+            errors.add(:password,I18n.t('activerecord.errors.models.participation.user.auth_failed'))
+          end
+        end
       end
     end
   end
