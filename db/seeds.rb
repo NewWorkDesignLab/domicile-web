@@ -8,3 +8,7 @@
 
 user = User.create(email: 'info@tobiasbohn.com', password: Rails.application.credentials[:seed_password])
 user.confirm
+user1 = User.create(email: 'info1@tobiasbohn.com', password: Rails.application.credentials[:seed_password])
+user1.confirm
+user2 = User.create(email: 'info2@tobiasbohn.com', password: Rails.application.credentials[:seed_password])
+user2.confirm

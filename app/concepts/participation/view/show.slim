@@ -1,2 +1,52 @@
-h1 Particip Show
+h1 = t('.h1')
 = cell(Domicile::Cell::Flash)
+
+.btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
+  = link_to t('misc.back_overview'), participations_path, class: 'btn btn-outline-secondary', role: 'button'
+
+.row
+  .col-12.col-sm-6.domcl-top-space
+    h3.h5 = t('.h3.settings')
+    = cell(Scenario::Cell::Settings, scenario)
+  .col-12.col-sm-6.domcl-top-space
+    h3.h5 = t('.h3.statistics')
+    = cell(Participation::Cell::Statistics, participation)
+
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 = t('.h3.execute')
+    p = t('.execute_text')
+
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 = t('.h3.results')
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th scope="col" = t('.table.created_at')
+          th scope="col" = t('.table.result')
+          th scope="col" = t('.table.actions')
+      tbody
+        - if participation.results.present?
+          - participation.results.each do |result|
+            tr.table-sm
+              td = l(result[:created_at])
+              td kommt noch
+              td = link_to t('misc.details'), participation_result_path(participation_id: participation[:id], id: result[:id])
+        - else
+          tr.table-sm
+            td.text-center colspan="3" = t('.table.no_entry')
+
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 = t('.h3.manage')
+    .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
+      = link_to t('.link.destroy'),
+              participation_path(id: participation[:id]),
+              method: :delete,
+              role: 'button',
+              class: 'btn btn-danger',
+              data: { confirm: t('.confirm.destroy') }

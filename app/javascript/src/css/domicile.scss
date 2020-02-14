@@ -30,6 +30,10 @@ body.using-mouse :focus {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.btn-toolbar .btn{
+  @extend .mb-2;
+  @extend .mr-2;
+}
 
 
 // NAVIGATION

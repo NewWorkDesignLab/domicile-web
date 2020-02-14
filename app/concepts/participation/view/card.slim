@@ -5,18 +5,7 @@
       h3.h6.card-subtitle.text-muted.mb-2.domcl-oneline-nowrap = subtitle
     .row
       .col-12
-        p.mb-0
-          strong #{t('concepts.scenario.cell.new.label.id')}
-          |  #{scenario[:id]}
-        p.mb-0
-          strong #{t('concepts.scenario.cell.new.label.room')}
-          |  #{t('concepts.scenario.cell.new.settings.room', count: scenario[:number_rooms])}
-        p.mb-0
-          strong #{t('concepts.scenario.cell.new.label.time')}
-          |  #{t('concepts.scenario.cell.new.settings.time', count: scenario[:time_limit])}
-        p.mb-0
-          strong #{t('concepts.scenario.cell.new.label.damage')}
-          |  #{t('concepts.scenario.cell.new.settings.damage', count: scenario[:number_damages])}
+        = cell(Scenario::Cell::Settings, scenario)
     .row.mt-1
       .col-12.text-right
-        = link_to t('.details'), participation_path(id: participation[:id]), class: 'btn btn-primary', role: 'button'
+        = link_to t('misc.details'), participation_path(id: participation[:id]), class: 'btn btn-primary', role: 'button'

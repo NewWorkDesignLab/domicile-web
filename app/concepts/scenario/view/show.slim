@@ -1,2 +1,70 @@
-h1 Scenario Show
+h1 = t('.h1')
+h2.h3.text-muted = scenario[:name].presence || t('.h2')
 = cell(Domicile::Cell::Flash)
+
+.btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
+  = link_to t('misc.back_overview'), scenarios_path, class: 'btn btn-outline-secondary', role: 'button'
+  - if current_user.participations.exists?(scenario_id: scenario[:id])
+    - participation = current_user.participations.find_by(scenario_id: scenario[:id])
+    = link_to t('.link.my_participation'),
+            participation_path(id: participation[:id]),
+            class: 'btn btn-outline-primary',
+            role: 'button'
+  - else
+    = link_to t('concepts.participation.cell.new.label.submit'),
+            participations_path(params: { participation: {scenario_id: scenario[:id]} }),
+            class: 'btn btn-outline-primary',
+            role: 'button',
+            method: :post
+
+
+.row
+  .col-12.col-sm-6.domcl-top-space
+    h3.h5 = t('.h3.settings')
+    = cell(Scenario::Cell::Settings, scenario)
+  .col-12.col-sm-6.domcl-top-space
+    h3.h5 = t('.h3.statistics')
+    = cell(Scenario::Cell::Statistics, scenario)
+
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 = t('.h3.invite')
+    p = t('.invite_text')
+
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 = t('.h3.users')
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th scope="col" = t('.table.user')
+          th scope="col" = t('.table.created_at')
+          th scope="col" = t('.table.actions')
+      tbody
+        - if scenario.participations.present?
+          - scenario.participations.each do |participation|
+            tr.table-sm
+              td = participation.user[:email]
+              td = l(participation[:created_at])
+              td = link_to t('misc.details'), scenario_participation_path(scenario_id: scenario[:id], id: participation[:id])
+        - else
+          tr.table-sm
+            td.text-center colspan="3" = t('.table.no_entry')
+
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 = t('.h3.manage')
+    .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
+      = link_to t('.link.edit'),
+              edit_scenario_path(id: scenario[:id]),
+              role: 'button',
+              class: 'btn btn-primary'
+      = link_to t('.link.destroy'),
+              scenario_path(id: scenario[:id]),
+              method: :delete,
+              role: 'button',
+              class: 'btn btn-danger',
+              data: { confirm: t('.confirm.destroy') }

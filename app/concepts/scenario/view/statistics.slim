@@ -1,0 +1,9 @@
+p.mb-0
+  strong #{t('.label.created_at')}
+  |  #{l(scenario[:created_at], format: :short)}
+p.mb-0
+  strong #{t('.label.participations_count')}
+  |  #{scenario.participations.count}
+p.mb-0
+  strong #{t('.label.results_count')}
+  |  #{result_count}
