@@ -4,7 +4,7 @@ de:
       cell:
         index:
           h1: Meine Teilnahmen
-          no_results: Keine Ergebnisse gefunden. Sie können in nur wenigen Schritten einem Szenario beitreten...
+          no_executions: Keine Ergebnisse gefunden. Sie können in nur wenigen Schritten einem Szenario beitreten...
           new_participation: Einem Szenario beitreten
         new:
           h1: Einem Szenario beitreten
@@ -20,7 +20,7 @@ de:
             settings: 'Übersicht des Szenarios:'
             statistics: 'Statistiken:'
             execute: Szenario ausführen
-            result: Ergebnisse
+            execution: Ergebnisse
             manage: Teilnahme beenden
           link:
             destroy: Teilnahme am Szenario beenden
@@ -28,7 +28,7 @@ de:
             destroy: Möchtest du die Teilnahme an diesem Szenario wirklich beenden?
           table:
             created_at: Ausführung
-            result: Ergebniss
+            execution: Ergebniss
             actions: Aktionen
             no_entry: Sie haben dieses Szenario noch nicht ausgeführt
           execute_text: Nachdem Sie einem Szenario beigetreten sind, können Sie es in der Domicile-Android App ausführen. Downloaden Sie dazu die App aus dem Google Play Store und folgen den Anweisungen in der App. Falls Sie die App bereits installiert haben, können Sie das Szenario direkt öffnen.
@@ -36,7 +36,7 @@ de:
           label:
             created_at: 'Beigetreten am:'
             creator: 'Erstellt von:'
-            results_count: 'Anzahl Ausführungen:'
+            executions_count: 'Anzahl Ausführungen:'
   participations:
     create:
       flash:

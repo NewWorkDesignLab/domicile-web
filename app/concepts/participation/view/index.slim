@@ -2,7 +2,7 @@ h1 = t('.h1')
 = cell(Domicile::Cell::Flash)
 
 - if model.count <= 0
-  p.domcl-top-space.text-center = t('.no_results')
+  p.domcl-top-space.text-center = t('.no_executions')
   .text-center = link_to t('.new_participation'), new_participation_path, class: 'btn btn-primary'
 - else
   .text-left = link_to t('.new_participation'), new_participation_path, class: 'btn btn-primary'

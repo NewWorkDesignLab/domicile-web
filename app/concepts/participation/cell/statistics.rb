@@ -6,8 +6,8 @@ module Participation::Cell
       model
     end
 
-    def result_count
-      participation.results.count
+    def executions_count
+      participation.executions.count
     end
   end
 end

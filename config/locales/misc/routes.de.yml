@@ -4,7 +4,7 @@ de:
       users: 'benutzer'
       scenarios: 'szenarios'
       participations: 'teilnahmen'
-      results: 'ergebnisse'
+      executions: 'ergebnisse'
       new: 'neu'
       edit: 'bearbeiten'
       destroy: 'löschen'

@@ -6,8 +6,8 @@ module Scenario::Cell
       model
     end
 
-    def result_count
-      Participation.joins(:results).where(participations: { scenario_id: scenario[:id] }).count
+    def execution_count
+      Participation.joins(:executions).where(participations: { scenario_id: scenario[:id] }).count
     end
   end
 end

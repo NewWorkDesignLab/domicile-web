@@ -21,20 +21,20 @@ h1 = t('.h1')
 
 .row.domcl-top-space
   .col-12
-    h3.h4 = t('.h3.results')
+    h3.h4 = t('.h3.executions')
     table.table.table-striped.table-bordered
       thead
         tr
           th scope="col" = t('.table.created_at')
-          th scope="col" = t('.table.result')
+          th scope="col" = t('.table.execution')
           th scope="col" = t('.table.actions')
       tbody
-        - if participation.results.present?
-          - participation.results.each do |result|
+        - if participation.executions.present?
+          - participation.executions.each do |execution|
             tr.table-sm
-              td = l(result[:created_at])
+              td = l(execution[:created_at])
               td kommt noch
-              td = link_to t('misc.details'), participation_result_path(participation_id: participation[:id], id: result[:id])
+              td = link_to t('misc.details'), participation_execution_path(participation_id: participation[:id], id: execution[:id])
         - else
           tr.table-sm
             td.text-center colspan="3" = t('.table.no_entry')

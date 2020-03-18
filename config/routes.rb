@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   ## ONLY FOR TESTING, NEED REWORK AND THEN DELETE THIS
   get '/api/user', to: 'api#user'
-  get '/api/image', to: 'api#image'
-  get '/api/result', to: 'api#result'
+  post '/api/image', to: 'api#image'
+  get '/api/execution', to: 'api#execution'
 
   scope(path_names: {
           new: I18n.t('misc.routes.new'),
@@ -39,15 +39,15 @@ Rails.application.routes.draw do
     resources :scenarios, path: I18n.t('misc.routes.scenarios') do
       ## PARTICIPATION ROUTES
       resources :participations, only: [:show], path: I18n.t('misc.routes.participations'), controller: 'scenarios/participations' do
-        ## RESULT ROUTES
-        resources :results, only: [:show], path: I18n.t('misc.routes.results'), controller: 'scenarios/results'
+        ## EXECUTIONS ROUTES
+        resources :executions, only: [:show], path: I18n.t('misc.routes.executions'), controller: 'scenarios/executions'
       end
     end
 
     ## PARTICIPATION ROUTES
     resources :participations, only: [:index, :new, :create, :show, :destroy], path: I18n.t('misc.routes.participations') do
-      ## RESULT ROUTES
-      resources :results, only: [:show, :destroy], path: I18n.t('misc.routes.results')
+      ## EXECUTION ROUTES
+      resources :executions, only: [:show, :destroy], path: I18n.t('misc.routes.executions')
     end
   end
 
