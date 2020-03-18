@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   get '/impressum', to: 'pages#legal', as: 'legal'
   get '/datenschutz', to: 'pages#privacy', as: 'privacy'
 
+  ## ONLY FOR TESTING, NEED REWORK AND THEN DELETE THIS
+  get '/api/user', to: 'api#user'
+  get '/api/image', to: 'api#image'
+  get '/api/result', to: 'api#result'
+
   scope(path_names: {
           new: I18n.t('misc.routes.new'),
           edit: I18n.t('misc.routes.edit'),
