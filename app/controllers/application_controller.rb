@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
 
   def check_scenario_accessability!(id)
     if id.present?
-      result = Scenario::Operation::CheckAccessability.(id: id, current_user: current_user)
-      if result.failure?
+      if !current_user.scenarios.exists?(id: id)
         flash[:alert] = "Scenario not found... You can see an overview of your created Scenrios below"
         redirect_to scenarios_path
       end
@@ -20,8 +19,7 @@ class ApplicationController < ActionController::Base
 
   def check_participation_accessability!(id)
     if id.present?
-      result = Participation::Operation::CheckAccessability.(id: id, current_user: current_user)
-      if result.failure?
+      if !current_user.available_participations.exists?(id: id)
         flash[:alert] = "Participation not found... You can see an overview of your Participations below"
         redirect_to participations_path
       end

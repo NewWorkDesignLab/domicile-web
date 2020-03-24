@@ -42,11 +42,18 @@ class ScenariosController < ApplicationController
   end
 
   def show
-    render_cell(
-      page_cell: Scenario::Cell::Show,
-      header_cell: Scenario::Header::Cell::Show,
-      cell_object: current_user.scenarios.find_by(id: params[:id])
-    )
+    scenario = current_user.scenarios.find_by(id: params[:id])
+
+    if scenario.present?
+      render_cell(
+        page_cell: Scenario::Cell::Show,
+        header_cell: Scenario::Header::Cell::Show,
+        cell_object: scenario
+      )
+    else
+      flash[:alert] = "Scenario nicht gefunden"
+      redirect_to index_path
+    end
   end
 
   def edit

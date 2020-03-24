@@ -34,7 +34,7 @@ h1 = t('.h1')
             tr.table-sm
               td = l(execution[:created_at])
               td kommt noch
-              td = link_to t('misc.details'), participation_execution_path(participation_id: participation[:id], id: execution[:id])
+              td = link_to t('misc.details'), execution_path(id: execution[:id])
         - else
           tr.table-sm
             td.text-center colspan="3" = t('.table.no_entry')

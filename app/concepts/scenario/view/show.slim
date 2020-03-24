@@ -48,7 +48,7 @@ h2.h3.text-muted = scenario[:name].presence || t('.h2')
             tr.table-sm
               td = participation.user[:email]
               td = l(participation[:created_at])
-              td = link_to t('misc.details'), scenario_participation_path(scenario_id: scenario[:id], id: participation[:id])
+              td = link_to t('misc.details'), participation_path(id: participation[:id])
         - else
           tr.table-sm
             td.text-center colspan="3" = t('.table.no_entry')

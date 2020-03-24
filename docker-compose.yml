@@ -3,8 +3,6 @@ services:
   postgres:
     image: postgres:11.4
     restart: always
-    volumes:
-      - db_tmp:/var/run
 
   web:
     image: domicile_web
@@ -12,10 +10,3 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
-
-volumes:
-  db_tmp: &tmp_fs
-    driver: local
-    driver_opts:
-      type: tmpfs
-      device: tmpfs

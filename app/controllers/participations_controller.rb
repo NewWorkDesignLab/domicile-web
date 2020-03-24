@@ -42,11 +42,18 @@ class ParticipationsController < ApplicationController
   end
 
   def show
-    render_cell(
-      page_cell: Participation::Cell::Show,
-      header_cell: Participation::Header::Cell::Show,
-      cell_object: current_user.participations.find_by(id: params[:id])
-    )
+    result = current_user.available_participations.find_by(id: params[:id])
+
+    if result.present?
+      render_cell(
+        page_cell: Participation::Cell::Show,
+        header_cell: Participation::Header::Cell::Show,
+        cell_object: result
+      )
+    else
+      flash[:alert] = "Nicht gefunden"
+      redirect_to dashboard_path
+    end
   end
 
   def destroy
