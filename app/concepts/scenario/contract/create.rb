@@ -71,5 +71,11 @@ module Scenario::Contract
         errors.add(:password_confirmation, :match)
       end
     end
+
+    private
+
+    def name=(val)
+      super(val == "" ? nil : val)
+    end
   end
 end
