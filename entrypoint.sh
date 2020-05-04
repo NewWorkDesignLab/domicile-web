@@ -8,6 +8,9 @@ echo "Waiting for db ..."
 declare retry=0
 while !(pg_isready -U postgres -h 127.0.0.1) && $retry < 5; do sleep 1; $retry ++; done;
 
+echo "Checking yarn ..."
+command -v yarn install --check-files
+
 echo "Preparing Tables ..."
 # depends on custom db:exists Task to check if database exists (lib/tasks/db_exists.rake)
 # Source: https://stackoverflow.com/a/35732641
