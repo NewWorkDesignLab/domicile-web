@@ -28,6 +28,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Devise
 gem 'devise'
+gem 'devise_token_auth'
 
 # Trailblazer
 gem 'trailblazer', github: 'trailblazer/trailblazer'

@@ -1,6 +1,6 @@
-class Api::ScenariosController < Api::BaseController
+class Api::ParticipationsController < Api::BaseController
   def index
-    render json: Scenario.all
+    render json: Participation.all
   end
 
   def create

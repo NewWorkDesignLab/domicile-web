@@ -1,6 +1,6 @@
-class Api::ScenariosController < Api::BaseController
+class Api::ExecutionsController < Api::BaseController
   def index
-    render json: Scenario.all
+    render json: Execution.all
   end
 
   def create

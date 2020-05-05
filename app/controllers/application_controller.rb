@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Domicile::CookieHelpers
+  protect_from_forgery with: :exception
 
   def render_cell(page_cell:, header_cell:, cell_object: nil, layout: 'full', status: :ok, **options)
     @html_head = header_cell

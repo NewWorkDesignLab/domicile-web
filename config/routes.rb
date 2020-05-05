@@ -39,5 +39,21 @@ Rails.application.routes.draw do
     resources :executions,
             only: [:show, :destroy],
             path: I18n.t('misc.routes.executions')
+
+  end
+
+  namespace :api do
+    mount_devise_token_auth_for 'User',
+            at: 'auth',
+            defaults: {format: 'json'},
+            controllers: {
+              sessions: 'api/devise_token_auth/sessions',
+              passwords: 'api/devise_token_auth/passwords',
+              registrations: 'api/devise_token_auth/registrations',
+              confirmations: 'api/devise_token_auth/confirmations'
+            }
+    resources :scenarios, only: [:index, :create, :show, :update, :destroy]
+    resources :participations, only: [:index, :create, :show, :update, :destroy]
+    resources :executions, only: [:index, :create, :show, :update, :destroy]
   end
 end

@@ -13,6 +13,8 @@ class User < ApplicationRecord
          :confirmable,
          :trackable
 
+  include DeviseTokenAuth::Concerns::User
+
   def available_participations
     Participation.joins(:scenario).where("participations.user_id = ? OR scenarios.user_id = ?", id, id)
   end
