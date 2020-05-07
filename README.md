@@ -67,6 +67,13 @@ docker-compose run web rails test
 docker-compose run web rails test test/system
 ```
 
+## deploying
+```
+git co BRANCH_TO_DEPLOY
+DOCKER_BUILDKIT=1 docker build . -t domicile_web:prod --target production --build-arg RAILS_MASTER_KEY=$(cat config/master.key)
+
+
+
 ## keeping the docker setup up to date
 ### changed docker files
 

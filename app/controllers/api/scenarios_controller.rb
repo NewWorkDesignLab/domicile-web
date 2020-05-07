@@ -1,6 +1,6 @@
 class Api::ScenariosController < Api::BaseController
   def index
-    render json: Scenario.all
+    render json: current_user.scenarios
   end
 
   def create
