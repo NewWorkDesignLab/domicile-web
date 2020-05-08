@@ -71,7 +71,14 @@ docker-compose run web rails test test/system
 ```
 git co BRANCH_TO_DEPLOY
 DOCKER_BUILDKIT=1 docker build . -t domicile_web:prod --target production --build-arg RAILS_MASTER_KEY=$(cat config/master.key)
-
+docker save domicile_web:prod | gzip > /tmp/domicile_web_prod.tar
+ssh root@134.122.84.237 mkdir -p /var/www/domicile.tobiasbohn.com/releases/domicile_release_001/
+scp /tmp/domicile_web_prod.tar root@134.122.84.237:/var/www/domicile.tobiasbohn.com/releases/domicile_release_001/
+scp ./docker-compose.yml root@134.122.84.237:/var/www/domicile.tobiasbohn.com/releases/domicile_release_001/
+scp ./docker-compose.production.yml root@134.122.84.237:/var/www/domicile.tobiasbohn.com/releases/domicile_release_001/
+scp ./.env root@134.122.84.237:/var/www/domicile.tobiasbohn.com/releases/domicile_release_001/
+ssh root@134.122.84.237 "docker image load -q -i /var/www/domicile.tobiasbohn.com/releases/domicile_release_001/domicile_web_prod.tar"
+```
 
 
 ## keeping the docker setup up to date
