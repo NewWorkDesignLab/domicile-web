@@ -9,11 +9,11 @@
 !app
 !bin
 !lib
+!entrypoints
 
 # Root Files
 !Gemfile*
 !Rakefile
-!entrypoint.sh
 !package.json
 !postcss.config.js
 !babel.config.js
@@ -33,6 +33,7 @@
 !config/environment.rb
 !config/puma.rb
 !config/routes.rb
+!config/schedule.rb
 !config/spring.rb
 !config/storage.yml
 !config/webpacker.yml

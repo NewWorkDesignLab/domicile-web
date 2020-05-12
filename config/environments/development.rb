@@ -72,6 +72,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.hosts << "alteisenrand"
-  config.hosts << "alteisenrand.hob"
+  # Use a real queuing backend for Active Job (and separate queues per environment).
+  config.active_job.queue_name_prefix = "domicile_web_development"
 end

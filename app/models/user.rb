@@ -18,4 +18,10 @@ class User < ApplicationRecord
   def available_participations
     Participation.joins(:scenario).where("participations.user_id = ? OR scenarios.user_id = ?", id, id)
   end
+
+  # Override Devise Method to send Emails via Active Job, as describet in:
+  # https://github.com/heartcombo/devise#activejob-integration
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end

@@ -2,17 +2,29 @@ version: '3.4'
 services:
   postgres:
     environment:
-      POSTGRES_USER: rails
-      POSTGRES_PASSWORD: rails
+      <<: &dev_shared_postgres_config
+        POSTGRES_USER: rails
+        POSTGRES_PASSWORD: rails
     volumes:
       - postgres_dev_data:/var/lib/postgresql/data
 
   web:
     image: domicile_web:dev
-    volumes:
+    environment: *dev_shared_postgres_config
+    volumes: &dev_web_volumes
       - .:/domicile
       - web_node_modules:/domicile/node_modules/
       - web_tmp:/domicile/tmp/
+
+  delayed_job:
+    image: domicile_web:dev
+    environment: *dev_shared_postgres_config
+    volumes: *dev_web_volumes
+
+  cron_job:
+    image: domicile_web:dev
+    environment: *dev_shared_postgres_config
+    volumes: *dev_web_volumes
 
 volumes:
   web_node_modules:

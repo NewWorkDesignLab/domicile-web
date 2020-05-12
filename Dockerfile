@@ -73,7 +73,8 @@ RUN yarn install --check-files --prod \
 FROM base AS development
 
 EXPOSE 3000
-COPY entrypoint.sh /usr/bin/
+COPY entrypoints/web-entrypoint.sh /usr/bin/entrypoint.sh
+COPY entrypoints/cron-entrypoint.sh /usr/bin/cron-entrypoint.sh
 
 RUN apk --update --no-cache add \
   postgresql-client \
@@ -83,7 +84,9 @@ RUN apk --update --no-cache add \
   bash \
   yarn \
   nodejs \
-  && chmod +x /usr/bin/entrypoint.sh
+  && chmod +x /usr/bin/entrypoint.sh \
+  && chmod +x /usr/bin/cron-entrypoint.sh \
+  && crontab -l | { cat; echo ""; } | crontab -
 
 COPY --from=dev_bundle /usr/local/bundle/ /usr/local/bundle/
 COPY --from=dev_bundle $APP_PATH $APP_PATH
@@ -106,13 +109,16 @@ ENV RAILS_ENV=production \
   EXECJS_RUNTIME=Disabled
 
 EXPOSE 3000
-COPY entrypoint.sh /usr/bin/
+COPY entrypoints/web-entrypoint.sh /usr/bin/entrypoint.sh
+COPY entrypoints/cron-entrypoint.sh /usr/bin/cron-entrypoint.sh
 
 RUN apk --update --no-cache add \
   postgresql-client \
   tzdata \
   bash \
-  && chmod +x /usr/bin/entrypoint.sh
+  && chmod +x /usr/bin/entrypoint.sh \
+  && chmod +x /usr/bin/cron-entrypoint.sh \
+  && crontab -l | { cat; echo ""; } | crontab -
 
 COPY --from=prod_bundle /usr/local/bundle/ /usr/local/bundle/
 COPY --from=prod_bundle $APP_PATH $APP_PATH

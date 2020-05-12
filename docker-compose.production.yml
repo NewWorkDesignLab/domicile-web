@@ -2,8 +2,9 @@ version: '3.4'
 services:
   postgres:
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      <<: &prod_shared_postgres_config
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_prod_data:/var/lib/postgresql/data
 
@@ -11,9 +12,28 @@ services:
     image: domicile_web:prod
     restart: always
     environment:
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      <<: *prod_shared_postgres_config
+      <<: &prod_shared_web_config
+        RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    volumes: &prod_web_volumes
+      - web_prod_data:/domicile
+
+  delayed_job:
+    image: domicile_web:prod
+    restart: always
+    environment:
+      <<: *prod_shared_web_config
+      <<: *prod_shared_postgres_config
+    volumes: *prod_web_volumes
+
+  cron_job:
+    image: domicile_web:prod
+    restart: always
+    environment:
+      <<: *prod_shared_web_config
+      <<: *prod_shared_postgres_config
+    volumes: *prod_web_volumes
 
 volumes:
   postgres_prod_data:
+  web_prod_data:

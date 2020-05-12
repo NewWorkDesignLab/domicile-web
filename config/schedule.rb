@@ -18,3 +18,12 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+env :GEM_PATH, '/usr/local/bundle'
+set :output, '/my-cron-log.log'
+
+job_type :rake, "cd :path && bundle exec rake :task --silent :output"
+
+every 1.minute do
+  rake 'domicile:test_whenever'
+end
