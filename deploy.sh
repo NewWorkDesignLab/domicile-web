@@ -9,6 +9,12 @@ MASTER_KEY=$(cat config/master.key)
 POSTGRES_USER=$(grep POSTGRES_USER .env | xargs)
 POSTGRES_PASSWORD=$(grep POSTGRES_PASSWORD .env | xargs)
 
+echo "Clearing Old Stack"
+ssh $HOST docker stop domicile_release_001_web_1
+ssh $HOST docker stop domicile_release_001_postgres_1
+ssh $HOST docker system prune --all --volumes -f
+ssh $HOST rm -rf $DEPLOY_TO
+
 echo "Building App Image"
 DOCKER_BUILDKIT=1 docker build . -t domicile_web:prod --target production --build-arg RAILS_MASTER_KEY=$MASTER_KEY
 
