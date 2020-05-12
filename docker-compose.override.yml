@@ -1,10 +1,9 @@
 version: '3.4'
 services:
   postgres:
-    environment:
-      <<: &dev_shared_postgres_config
-        POSTGRES_USER: rails
-        POSTGRES_PASSWORD: rails
+    environment: &dev_shared_postgres_config
+      POSTGRES_USER: rails
+      POSTGRES_PASSWORD: rails
     volumes:
       - postgres_dev_data:/var/lib/postgresql/data
 
@@ -27,8 +26,8 @@ services:
     volumes: *dev_web_volumes
 
 volumes:
-  web_node_modules:
   postgres_dev_data:
+  web_node_modules:
   web_tmp: &tmp_fs
     driver: local
     driver_opts:

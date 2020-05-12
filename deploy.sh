@@ -3,15 +3,18 @@ set -e
 
 HOST="root@134.122.84.237"
 DEPLOY_TO="/var/www/domicile.tobiasbohn.com"
-RELEASE="domicile_release_001"
+RELEASE="domicile_release_004"
+OLD_RELEASE="domicile_release_003"
 RELEASE_PATH="${DEPLOY_TO}/releases/${RELEASE}"
 MASTER_KEY=$(cat config/master.key)
 POSTGRES_USER=$(grep POSTGRES_USER .env | xargs)
 POSTGRES_PASSWORD=$(grep POSTGRES_PASSWORD .env | xargs)
 
 echo "Clearing Old Stack"
-ssh $HOST docker stop domicile_release_001_web_1
-ssh $HOST docker stop domicile_release_001_postgres_1
+ssh $HOST "docker stop ${OLD_RELEASE}_delayed_job_1" || true
+ssh $HOST "docker stop ${OLD_RELEASE}_cron_job_1" || true
+ssh $HOST "docker stop ${OLD_RELEASE}_web_1" || true
+ssh $HOST "docker stop ${OLD_RELEASE}_postgres_1" || true
 ssh $HOST docker system prune --all --volumes -f
 ssh $HOST rm -rf $DEPLOY_TO
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "[CRON] Waiting for db ..."
+echo "[JOB] Waiting for db ..."
 declare retry=0
 while !(pg_isready -U postgres -h 127.0.0.1) && $retry < 5; do sleep 1; $retry ++; done;
 
@@ -10,6 +10,5 @@ while !(pg_isready -U postgres -h 127.0.0.1) && $retry < 5; do sleep 1; $retry +
 # # Source: https://stackoverflow.com/a/35732641
 # while $retry < 10; do rake db:exists && break || echo "."; $retry ++; sleep 2; done;
 
-echo "[CRON] Executing start command ..."
-bundle exec whenever --update-crontab --set environment=$RAILS_ENV
-crond -f
+echo "[JOB] Executing start command ..."
+bundle exec rails jobs:work

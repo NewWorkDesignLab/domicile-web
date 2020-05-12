@@ -75,6 +75,7 @@ FROM base AS development
 EXPOSE 3000
 COPY entrypoints/web-entrypoint.sh /usr/bin/entrypoint.sh
 COPY entrypoints/cron-entrypoint.sh /usr/bin/cron-entrypoint.sh
+COPY entrypoints/job-entrypoint.sh /usr/bin/job-entrypoint.sh
 
 RUN apk --update --no-cache add \
   postgresql-client \
@@ -86,6 +87,7 @@ RUN apk --update --no-cache add \
   nodejs \
   && chmod +x /usr/bin/entrypoint.sh \
   && chmod +x /usr/bin/cron-entrypoint.sh \
+  && chmod +x /usr/bin/job-entrypoint.sh \
   && crontab -l | { cat; echo ""; } | crontab -
 
 COPY --from=dev_bundle /usr/local/bundle/ /usr/local/bundle/
@@ -111,6 +113,7 @@ ENV RAILS_ENV=production \
 EXPOSE 3000
 COPY entrypoints/web-entrypoint.sh /usr/bin/entrypoint.sh
 COPY entrypoints/cron-entrypoint.sh /usr/bin/cron-entrypoint.sh
+COPY entrypoints/job-entrypoint.sh /usr/bin/job-entrypoint.sh
 
 RUN apk --update --no-cache add \
   postgresql-client \
@@ -118,6 +121,7 @@ RUN apk --update --no-cache add \
   bash \
   && chmod +x /usr/bin/entrypoint.sh \
   && chmod +x /usr/bin/cron-entrypoint.sh \
+  && chmod +x /usr/bin/job-entrypoint.sh \
   && crontab -l | { cat; echo ""; } | crontab -
 
 COPY --from=prod_bundle /usr/local/bundle/ /usr/local/bundle/

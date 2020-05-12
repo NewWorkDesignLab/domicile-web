@@ -3,8 +3,6 @@ services:
   postgres:
     image: postgres:11.4
     restart: always
-    volumes:
-      - db_tmp:/var/run
 
   web:
     image: domicile_web
@@ -15,7 +13,7 @@ services:
 
   delayed_job:
     image: domicile_web
-    command: bundle exec rails jobs:work
+    command: /usr/bin/job-entrypoint.sh
     entrypoint: ''
     depends_on:
       - postgres
@@ -28,10 +26,3 @@ services:
     depends_on:
       - postgres
       - web
-
-volumes:
-  db_tmp: &tmp_fs
-    driver: local
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
