@@ -26,4 +26,13 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def check_execution_accessability!(id)
+    if id.present?
+      if !current_user.executions.exists?(id: id) && !current_user.hosted_executions.exists?(id: id)
+        flash[:alert] = "Execution not found..."
+        redirect_to participations_path
+      end
+    end
+  end
 end

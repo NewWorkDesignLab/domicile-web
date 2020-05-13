@@ -18,6 +18,11 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
       assert model[:number_rooms].present?
       assert model[:time_limit].present?
       assert model[:number_damages].present?
+
+      assert_equal 'Test Szenario', model[:name]
+      assert_equal 1, model[:number_rooms]
+      assert_equal 0, model[:time_limit]
+      assert_equal 2, model[:number_damages]
     end
   end
 
@@ -41,6 +46,11 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
       assert model[:time_limit].present?
       assert model[:number_damages].present?
       assert_nil model[:password_digest]
+
+      assert_equal 'Test Szenario', model[:name]
+      assert_equal 1, model[:number_rooms]
+      assert_equal 0, model[:time_limit]
+      assert_equal 2, model[:number_damages]
     end
   end
 
@@ -65,6 +75,10 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
       assert model[:number_damages].present?
       assert_nil model[:name]
       assert_nil model[:password_digest]
+
+      assert_equal 1, model[:number_rooms]
+      assert_equal 0, model[:time_limit]
+      assert_equal 2, model[:number_damages]
     end
   end
 

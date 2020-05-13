@@ -52,8 +52,8 @@ Rails.application.routes.draw do
               registrations: 'api/devise_token_auth/registrations',
               confirmations: 'api/devise_token_auth/confirmations'
             }
-    resources :scenarios, only: [:index, :create, :show, :update, :destroy]
-    resources :participations, only: [:index, :create, :show, :update, :destroy]
-    resources :executions, only: [:index, :create, :show, :update, :destroy]
+    resources :scenarios, only: [:index, :show], defaults: {format: 'json'}
+    resources :participations, only: [:index, :create, :show], defaults: {format: 'json'}
+    resources :executions, only: [:create], defaults: {format: 'json'}
   end
 end

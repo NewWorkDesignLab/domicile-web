@@ -1,6 +1,6 @@
 class ExecutionsController < ApplicationController
   before_action :authenticate_user!
-  before_action -> { check_participation_accessability!(params[:participation_id]) }
+  before_action -> { check_execution_accessability!(params[:id]) }
 
   def show
     render_cell(
