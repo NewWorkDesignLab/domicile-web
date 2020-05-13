@@ -1,21 +1,21 @@
 class Api::ExecutionsController < Api::BaseController
   def index
-    render json: Execution.all
+    render json: current_user.executions
   end
 
   def create
-    render json: "create ok"
+    render json: "not implemented yet"
   end
 
   def show
-    render json: "show ok"
+    render json: "not implemented yet"
   end
 
   def update
-    render json: "update ok"
+    render json: "not implemented yet"
   end
 
   def destroy
-    render json: "destroy ok"
+    render json: "not implemented yet"
   end
 end

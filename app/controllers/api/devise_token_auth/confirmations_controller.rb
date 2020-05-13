@@ -1,5 +1,4 @@
 class Api::DeviseTokenAuth::ConfirmationsController < DeviseTokenAuth::ConfirmationsController
-  # skip_before_action :protect_from_forgery
   protect_from_forgery with: :null_session
 
   # Re-sends confirmation email

@@ -1,5 +1,4 @@
 class Api::DeviseTokenAuth::RegistrationsController < DeviseTokenAuth::RegistrationsController
-  # skip_before_action :protect_from_forgery
   protect_from_forgery with: :null_session
 
   # Account updates. Update an existing account

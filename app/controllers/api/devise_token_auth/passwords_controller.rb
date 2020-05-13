@@ -1,5 +1,4 @@
 class Api::DeviseTokenAuth::PasswordsController < DeviseTokenAuth::PasswordsController
-  # skip_before_action :protect_from_forgery
   protect_from_forgery with: :null_session
 
   # Change Users Password.
