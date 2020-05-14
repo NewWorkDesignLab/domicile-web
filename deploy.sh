@@ -3,20 +3,13 @@ set -e
 
 HOST="root@134.122.84.237"
 DEPLOY_TO="/var/www/domicile.tobiasbohn.com"
-RELEASE="domicile_release_004"
-OLD_RELEASE="domicile_release_003"
+RELEASE="domicile_release_005"
+OLD_RELEASE="domicile_release_004"
 RELEASE_PATH="${DEPLOY_TO}/releases/${RELEASE}"
 MASTER_KEY=$(cat config/master.key)
 POSTGRES_USER=$(grep POSTGRES_USER .env | xargs)
 POSTGRES_PASSWORD=$(grep POSTGRES_PASSWORD .env | xargs)
 
-echo "Clearing Old Stack"
-ssh $HOST "docker stop ${OLD_RELEASE}_delayed_job_1" || true
-ssh $HOST "docker stop ${OLD_RELEASE}_cron_job_1" || true
-ssh $HOST "docker stop ${OLD_RELEASE}_web_1" || true
-ssh $HOST "docker stop ${OLD_RELEASE}_postgres_1" || true
-ssh $HOST docker system prune --all --volumes -f
-ssh $HOST rm -rf $DEPLOY_TO
 
 echo "Building App Image"
 DOCKER_BUILDKIT=1 docker build . -t domicile_web:prod --target production --build-arg RAILS_MASTER_KEY=$MASTER_KEY
@@ -33,6 +26,13 @@ scp /tmp/domicile_web_prod.tar $HOST:$RELEASE_PATH
 echo "Copy Docker-Compose Files"
 scp ./docker-compose.yml $HOST:$RELEASE_PATH
 scp ./docker-compose.production.yml $HOST:$RELEASE_PATH
+
+echo "Clearing Old Stack"
+ssh $HOST "docker stop ${OLD_RELEASE}_delayed_job_1" || true
+ssh $HOST "docker stop ${OLD_RELEASE}_cron_job_1" || true
+ssh $HOST "docker stop ${OLD_RELEASE}_web_1" || true
+ssh $HOST "docker stop ${OLD_RELEASE}_postgres_1" || true
+ssh $HOST docker system prune --all --volumes -f
 
 echo "Load Docker Image"
 ssh $HOST "docker image load -q -i ${RELEASE_PATH}/domicile_web_prod.tar"

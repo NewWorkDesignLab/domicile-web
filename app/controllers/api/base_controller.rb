@@ -7,7 +7,7 @@ class Api::BaseController < ActionController::Base
 
   def check_scenario_accessability!(id)
     if id.present?
-      if !current_user.scenarios.exists?(id: id)
+      if !current_user.scenarios.exists?(id: id) && !current_user.participated_scenarios.exists?(id: id)
         render json: {errors:["Szenario nicht gefunden."]}.to_json, status: :not_found
       end
     end

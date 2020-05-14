@@ -1,5 +1,5 @@
 h1 executions Show
 = cell(Domicile::Cell::Flash)
-/ - execution = model.executions.find_by(id: params[:id])
-/ - execution.images.each do |image|
-/   img src="#{url_for(image)}" style="width: 300px"
+- execution = model.executions.find_by(id: params[:id])
+- execution.images.each do |image|
+  img src="#{url_for(image)}" style="width: 300px"
