@@ -43,6 +43,8 @@ gem 'reform-rails', '~> 0.2.0.rc2'
 gem 'delayed_job_active_record'
 gem 'whenever', require: false
 
+gem 'faker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

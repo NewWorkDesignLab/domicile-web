@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :scenarios # Scenarios this User created
-  has_many :participations # Participations of this User
+  has_many :scenarios, dependent: :destroy # Scenarios this User created
+  has_many :participations, dependent: :destroy # Participations of this User
   has_many :participated_scenarios, through: :participations, source: :scenario # Scenarios this User participated
   has_many :hosted_participations, through: :scenarios, source: :participations # Participations in Scenarios this User created
   has_many :executions, through: :participations # Executions this User created

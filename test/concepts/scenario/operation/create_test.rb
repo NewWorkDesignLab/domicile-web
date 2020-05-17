@@ -5,7 +5,7 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
     assert_difference 'Scenario.count' do
       assert result = Scenario::Operation::Create.(
         params: scenario_params,
-        current_user: users(:info)
+        current_user: user
       )
       assert result.success?
       assert result['contract.default'].errors.blank?
@@ -18,11 +18,6 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
       assert model[:number_rooms].present?
       assert model[:time_limit].present?
       assert model[:number_damages].present?
-
-      assert_equal 'Test Szenario', model[:name]
-      assert_equal 1, model[:number_rooms]
-      assert_equal 0, model[:time_limit]
-      assert_equal 2, model[:number_damages]
     end
   end
 
@@ -33,7 +28,7 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
           password: '',
           password_confirmation: ''
         ),
-        current_user: users(:info)
+        current_user: user
       )
       assert result.success?
       assert result['contract.default'].errors.blank?
@@ -46,11 +41,6 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
       assert model[:time_limit].present?
       assert model[:number_damages].present?
       assert_nil model[:password_digest]
-
-      assert_equal 'Test Szenario', model[:name]
-      assert_equal 1, model[:number_rooms]
-      assert_equal 0, model[:time_limit]
-      assert_equal 2, model[:number_damages]
     end
   end
 
@@ -62,7 +52,7 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
           password_confirmation: '',
           name: ''
         ),
-        current_user: users(:info)
+        current_user: user
       )
       assert result.success?
       assert result['contract.default'].errors.blank?
@@ -75,10 +65,6 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
       assert model[:number_damages].present?
       assert_nil model[:name]
       assert_nil model[:password_digest]
-
-      assert_equal 1, model[:number_rooms]
-      assert_equal 0, model[:time_limit]
-      assert_equal 2, model[:number_damages]
     end
   end
 
@@ -90,7 +76,7 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
           time_limit: '',
           number_damages: ''
         ),
-        current_user: users(:info)
+        current_user: user
       )
       assert result.failure?
       assert result['contract.default'].errors.present?
@@ -108,7 +94,7 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
           time_limit: nil,
           number_damages: nil
         ),
-        current_user: users(:info)
+        current_user: user
       )
       assert result.failure?
       assert result['contract.default'].errors.present?
@@ -128,7 +114,7 @@ class Scenario::Operation::CreateTest < ActiveSupport::TestCase
           password: '1234',
           password_confirmation: '12345'
         ),
-        current_user: users(:info)
+        current_user: user
       )
       assert result.failure?
       assert result['contract.default'].errors.present?

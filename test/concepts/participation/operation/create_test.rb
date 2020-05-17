@@ -1,19 +1,11 @@
 require 'test_helper'
 
 class Participation::Operation::CreateTest < ActiveSupport::TestCase
-  setup do
-    result = Scenario::Operation::Create.(
-      params: scenario_params(password: '', password_confirmation: ''),
-      current_user: users(:info)
-    )
-    @scenario = result[:model]
-  end
-
   test 'should succeed creating participation' do
     assert_difference 'Participation.count' do
       assert result = Participation::Operation::Create.(
-        params: {participation: {scenario_id: @scenario[:id]}},
-        current_user: users(:info)
+        params: participation_params,
+        current_user: user
       )
       assert result.success?
       assert result['contract.default'].errors.blank?
@@ -25,14 +17,18 @@ class Participation::Operation::CreateTest < ActiveSupport::TestCase
   end
 
   test 'should only participate once per user and scenario' do
+    my_scenario = create_scenario
+    my_user = create_user
+
     assert_difference 'Participation.count' do
-      assert result = Participation::Operation::Create.(params: {participation: {scenario_id: @scenario[:id]} }, current_user: users(:info))
+      assert result = Participation::Operation::Create.(params: participation_params(scenario_id: my_scenario[:id]), current_user: my_user)
       assert result.success?
     end
 
     assert_no_difference 'Participation.count' do
-      assert result = Participation::Operation::Create.(params: {participation: {scenario_id: @scenario[:id]} }, current_user: users(:info))
+      assert result = Participation::Operation::Create.(params: participation_params(scenario_id: my_scenario[:id]), current_user: my_user)
       assert result.failure?
+      assert_equal 'Sie sind diesem Szenario bereits beigetreten', result['contract.default'].errors.messages[:user].first
     end
   end
 end
