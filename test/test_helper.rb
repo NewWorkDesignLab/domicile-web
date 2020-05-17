@@ -3,9 +3,11 @@ require_relative '../config/environment'
 require 'rails/test_help'
 require 'faker'
 require 'test_data'
+require 'test_files'
 
 class ActiveSupport::TestCase
   include TestData
+  include TestFiles
 
   # Run tests in parallel with specified workers
   # parallelize(workers: :number_of_processors)

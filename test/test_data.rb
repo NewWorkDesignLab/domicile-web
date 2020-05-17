@@ -1,3 +1,5 @@
+require './test/test_files'
+
 module TestData
   def user
     @user ||= User.first || create_user
