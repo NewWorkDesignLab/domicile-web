@@ -46,7 +46,7 @@ module TestData
     ActionController::Parameters.new(
       {
         participation: {
-          scenario_id: create_scenario[:id],
+          scenario_id: options.delete(:scenario_id) || create_scenario[:id],
           password: '12345678'
         }.merge(**options)
       }
@@ -57,25 +57,37 @@ module TestData
     ActionController::Parameters.new(
       {
         execution: {
-          participation_id: create_participation[:id]
+          participation_id: options.delete(:participation_id) || create_participation[:id]
         }.merge(**options)
       }
     )
   end
 
   def create_user(**options)
-    User::Operation::Create.(params: user_params(options))[:model]
+    assert result = User::Operation::Create.(params: user_params(options))
+    assert result.success?
+    assert model = result[:model]
+    model
   end
 
   def create_scenario(**options)
-    Scenario::Operation::Create.(params: scenario_params(options), current_user: options.delete(:user) || create_user)[:model]
+    assert result = Scenario::Operation::Create.(params: scenario_params(options), current_user: options.delete(:user) || create_user)
+    assert result.success?
+    assert model = result[:model]
+    model
   end
 
   def create_participation(**options)
-    Participation::Operation::Create.(params: participation_params(options), current_user: options.delete(:user) || create_user)[:model]
+    assert result = Participation::Operation::Create.(params: participation_params(options), current_user: options.delete(:user) || create_user)
+    assert result.success?
+    assert model = result[:model]
+    model
   end
 
   def create_execution(**options)
-    Execution::Operation::Create.(params: execution_params(options), current_user: options.delete(:user) || create_user)[:model]
+    assert result = Execution::Operation::Create.(params: execution_params(options))
+    assert result.success?
+    assert model = result[:model]
+    model
   end
 end
