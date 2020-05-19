@@ -14,6 +14,7 @@ services:
       - .:/domicile
       - web_node_modules:/domicile/node_modules/
       - web_tmp:/domicile/tmp/
+      - ./tmp/screenshots/:/domicile/tmp/screenshots/
 
   delayed_job:
     image: domicile_web:dev

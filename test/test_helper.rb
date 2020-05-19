@@ -8,6 +8,7 @@ require 'test_files'
 class ActiveSupport::TestCase
   include TestData
   include TestFiles
+  include ActiveJob::TestHelper
 
   # Run tests in parallel with specified workers
   # parallelize(workers: :number_of_processors)
@@ -17,4 +18,20 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   Faker::Config.locale = :en
+
+  def assert_email_send(count: 1)
+    assert_difference 'ActionMailer::Base.deliveries.size', count do
+      perform_enqueued_jobs do
+        yield
+      end
+    end
+  end
+
+  def assert_no_email_send
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      perform_enqueued_jobs do
+        yield
+      end
+    end
+  end
 end

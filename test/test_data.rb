@@ -69,6 +69,14 @@ module TestData
     assert result = User::Operation::Create.(params: user_params(options))
     assert result.success?
     assert model = result[:model]
+    model.confirm
+    model
+  end
+
+  def create_unconfirmed_user(**options)
+    assert result = User::Operation::Create.(params: user_params(options))
+    assert result.success?
+    assert model = result[:model]
     model
   end
 
