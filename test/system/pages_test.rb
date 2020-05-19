@@ -10,5 +10,6 @@ class PagesTest < ApplicationSystemTestCase
     sign_in
     visit '/'
     assert_current_path(dashboard_path)
+    assert_menu_visible
   end
 end

@@ -219,11 +219,7 @@ class UsersTest < ApplicationSystemTestCase
     end
     assert_current_path(dashboard_path)
     assert_text 'Erfolgreich angemeldet'
-    assert_selector 'a', text: 'Dashboard'
-    assert_selector 'a', text: 'Meine Szenarios'
-    assert_selector 'a', text: 'Meine Teilnahmen'
-    assert_selector 'a', text: 'Einstellungen'
-    assert_selector 'a', text: 'Abmelden'
+    assert_menu_visible
 
     click_on 'Abmelden'
     assert_current_path(new_user_session_path)

@@ -23,19 +23,32 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   Capybara.javascript_driver = :selenium_chrome
   driven_by :selenium_chrome
 
-  def sign_in
-    assert my_user = create_user
+  def sign_in(**options)
+    assert my_user = options.delete(:user) || create_user
     visit new_user_session_path
+    assert_current_path(new_user_session_path)
     within '#new_user' do
       fill_in 'Email:', with: my_user[:email]
       fill_in 'Passwort:', with: '12345678'
       click_on 'Anmelden'
     end
     assert_text 'Erfolgreich angemeldet'
+    assert_current_path(dashboard_path)
   end
 
   def sign_out
     click_link 'Abmelden'
     assert_text 'Erfolgreich abgemeldet'
+    assert_current_path(new_user_session_path)
+  end
+
+  def assert_menu_visible
+    within '#navbar-collapse' do
+      assert_selector 'a', text: 'Dashboard'
+      assert_selector 'a', text: 'Meine Szenarios'
+      assert_selector 'a', text: 'Meine Teilnahmen'
+      assert_selector 'a', text: 'Einstellungen'
+      assert_selector 'a', text: 'Abmelden'
+    end
   end
 end
