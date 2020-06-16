@@ -92,3 +92,15 @@ body.using-mouse :focus {
     margin-top: 3.5rem;
   }
 }
+
+// WEBGL UNITY SPECTATOR
+.webgl-content {
+  width: 100vw;
+  height: 100vh;
+  display: hidden;
+}
+.loading-message {
+  width: 100%;
+  margin-top: 30vh;
+  text-align: center;
+}
