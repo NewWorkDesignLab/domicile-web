@@ -74,8 +74,4 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_name_prefix = "domicile_web_development"
-
-  # Fix "Request origin not allowed" Bug in Development, as mentionde in:
-  # https://github.com/rails/rails/issues/31524
-  config.action_cable.allowed_request_origins = [nil]
 end
