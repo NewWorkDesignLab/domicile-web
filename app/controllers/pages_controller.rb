@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:dashboard, :spectate]
-  before_action -> { check_spectate_accessability!(params[:id]) }
+  before_action only: [:spectate] do
+    check_spectate_accessability!(params[:id])
+  end
 
   def index
     if user_signed_in?

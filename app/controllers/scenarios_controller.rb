@@ -1,6 +1,8 @@
 class ScenariosController < ApplicationController
-  before_action :authenticate_user!
-  before_action -> { check_scenario_accessability!(params[:id]) }
+  before_action do
+    authenticate_user!()
+    check_scenario_accessability!(params[:id])
+  end
 
   def index
     render_cell(

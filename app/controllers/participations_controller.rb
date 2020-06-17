@@ -1,6 +1,8 @@
 class ParticipationsController < ApplicationController
-  before_action :authenticate_user!
-  before_action -> { check_participation_accessability!(params[:id]) }
+  before_action do
+    authenticate_user!()
+    check_participation_accessability!(params[:id])
+  end
 
   def index
     render_cell(
