@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 set -e
 
-HOST="root@134.122.84.237"
-DEPLOY_TO="/var/www/domicile.tobiasbohn.com"
+# HOST="root@134.122.84.237"
+# DEPLOY_TO="/var/www/domicile.tobiasbohn.com"
+HOST="root@188.68.56.140"
+DEPLOY_TO="/var/www/domicile"
 RELEASE="domicile_release_${1}"
 RELEASE_PATH="${DEPLOY_TO}/releases/${RELEASE}"
 MASTER_KEY=$(cat config/master.key)

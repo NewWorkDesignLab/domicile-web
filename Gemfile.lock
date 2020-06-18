@@ -77,6 +77,10 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    airbrake (10.0.5)
+      airbrake-ruby (~> 4.13)
+    airbrake-ruby (4.15.0)
+      rbtree3 (~> 0.5)
     bcrypt (3.1.13)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
@@ -209,6 +213,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rbtree3 (0.6.0)
     reform-rails (0.2.0.rc3)
       activemodel (>= 3.2)
       reform (>= 2.3.0.rc1, < 3.0.0)
@@ -308,6 +313,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller

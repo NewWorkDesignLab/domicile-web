@@ -44,6 +44,7 @@ gem 'delayed_job_active_record'
 gem 'whenever', require: false
 
 gem 'faker'
+gem 'airbrake'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
