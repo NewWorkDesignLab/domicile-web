@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include DeviseTokenAuth::Concerns::User
+
   has_many :scenarios, dependent: :destroy # Scenarios this User created
   has_many :participations, dependent: :destroy # Participations of this User
   has_many :participated_scenarios, through: :participations, source: :scenario # Scenarios this User participated
@@ -13,8 +15,6 @@ class User < ApplicationRecord
          :validatable,
          :confirmable,
          :trackable
-
-  include DeviseTokenAuth::Concerns::User
 
   # Cannot use "participations.or(hosted_participations)" because :hosted_participations uses join
   # in the background, so the scopes doesnt have the same Columns

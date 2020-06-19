@@ -25,7 +25,6 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector 'a', text: 'Anmelden'
     assert_selector 'a', text: 'Bestätigungslink nicht erhalten?'
 
-    skip("Known Issue: No Emails send on Registration")
     assert_email_send do
       within '#new_user' do
         fill_in 'Email:', with: 'info@tobiasbohn.com'
