@@ -2,7 +2,14 @@ h1 = t('.h1')
 = cell(Domicile::Cell::Flash)
 
 .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
-  = link_to t('misc.back_overview'), participations_path, class: 'btn btn-outline-secondary', role: 'button'
+  = link_to t('misc.back_overview'),
+          participations_path,
+          class: 'btn btn-outline-secondary',
+          role: 'button'
+  = link_to "Zuschauen",
+          spectate_path(id: participation[:id]),
+          class: 'btn btn-primary',
+          role: 'button'
 
 .row
   .col-12.col-sm-6.domcl-top-space
