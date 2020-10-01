@@ -1,7 +1,17 @@
+require 'json'
+
 class Api::BaseController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:bug_report]
+
+  def bug_report
+    permitted = params.permit(message: [:condition, :stackTrace, :type, :dateTime])
+    if permitted.present?
+      pretty = JSON.pretty_generate(permitted.to_h)
+      BugMailer.with(message: pretty).android_app_error.deliver_later
+    end
+  end
 
   private
 

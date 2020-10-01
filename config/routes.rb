@@ -57,5 +57,6 @@ Rails.application.routes.draw do
     resources :participations, only: [:index, :create, :show], defaults: {format: 'json'}
     resources :executions, only: [:create], defaults: {format: 'json'}
     post '/executions/:id/images', to: 'executions#upload_images'
+    post '/bugreport', to: 'base#bug_report'
   end
 end
