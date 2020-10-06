@@ -6,7 +6,7 @@ export default class extends Controller {
     var that = this;
     this.socket = consumer.subscriptions.create({ channel: "SpectatorChannel", id: this.data.get("id") }, {
       connected() {
-        that.unityInstance = UnityLoader.instantiate("webgl-target", "/unityweb/Build/webgl_test_008.json", { onProgress: UnityProgress });
+        that.unityInstance = UnityLoader.instantiate("webgl-target", "/unityweb/Build/webgl_test_009.json", { onProgress: UnityProgress });
       },
       received(data) {
         that.sendDataToWebGL(data["parameter"]);
