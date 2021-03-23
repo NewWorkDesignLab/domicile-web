@@ -95,12 +95,13 @@ body.using-mouse :focus {
 
 // WEBGL UNITY SPECTATOR
 .webgl-content {
+  position: absolute;
   width: 100vw;
   height: 100vh;
-  display: hidden;
-}
-.loading-message {
-  width: 100%;
-  margin-top: 30vh;
-  text-align: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
 }

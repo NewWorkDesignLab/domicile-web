@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
   get '/impressum', to: 'pages#legal', as: 'legal'
   get '/datenschutz', to: 'pages#privacy', as: 'privacy'
-  get '/zuschauen/:id', to: 'pages#spectate', as: 'spectate'
+  get '/domicile/:id', to: 'pages#spectate', as: 'spectate'
 
   scope(path_names: {
           new: I18n.t('misc.routes.new'),

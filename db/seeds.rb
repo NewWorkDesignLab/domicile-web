@@ -12,3 +12,8 @@ user1 = User.create(email: 'info1@tobiasbohn.com', password: Rails.application.c
 user1.confirm
 user2 = User.create(email: 'info2@tobiasbohn.com', password: Rails.application.credentials[:seed_password])
 user2.confirm
+
+(1..25).each do |index|
+  user = User.create(email: "nutzer#{index}@demo-account.de", password: "domicile-demo")
+  user.confirm
+end

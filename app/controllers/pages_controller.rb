@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: [:dashboard, :spectate]
-  before_action only: [:spectate] do
-    check_spectate_accessability!(params[:id])
-  end
+  # TODO reinsert auth on spectate
+  # before_action :authenticate_user!, only: [:dashboard, :spectate]
+  before_action :authenticate_user!, only: [:dashboard]
+  # before_action only: [:spectate] do
+  #   check_spectate_accessability!(params[:id])
+  # end
 
   def index
     if user_signed_in?
@@ -39,13 +41,13 @@ class PagesController < ApplicationController
   def spectate
     render_cell(
       page_cell: Page::Cell::Spectate,
-      header_cell: Page::Header::Cell::Spectate,
-      cell_object: current_user
+      header_cell: Page::Header::Cell::Spectate
     )
   end
 
   private
 
+  # TODO: adjust accessability for spectators
   def check_spectate_accessability!(id)
     if id.present? && Participation.exists?(id: id)
       scenario = Participation.find_by(id: id).scenario
