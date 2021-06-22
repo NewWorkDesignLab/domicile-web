@@ -1,5 +1,14 @@
-h1 executions Show
+h1.domcl-top-space Ergebnisse dieser Ausführung
 = cell(Domicile::Cell::Flash)
-- execution = model.executions.find_by(id: params[:id])
-- execution.images.each do |image|
-  img src="#{url_for(image)}" style="width: 300px"
+
+.btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
+  = link_to "Zurück zu den Ergebnissen",
+          participation_path(id: cell_object.participation[:id]),
+          class: 'btn btn-outline-secondary',
+          role: 'button'
+
+.row.domcl-top-space
+  .col-12
+    h3.h4 Screenshots
+    - cell_object.images.each do |image|
+      img src="#{url_for(image)}" style="width: 300px"

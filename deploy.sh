@@ -44,8 +44,8 @@ ssh $HOST "docker rm domicile_cron_job_1" || true
 ssh $HOST "docker rm domicile_web_1" || true
 ssh $HOST "docker rm domicile_postgres_1" || true
 
-echo "Clearing Docker System"
-ssh $HOST "docker system prune --all -f"
+# echo "Clearing Docker System"
+# ssh $HOST "docker system prune --all -f"
 
 echo "Load Docker Image"
 ssh $HOST "docker image load -q -i ${RELEASE_PATH}/domicile_web_prod.tar"

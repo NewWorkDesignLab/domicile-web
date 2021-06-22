@@ -1,2 +1,21 @@
-h1 EDIT SZENARIO
+h1.domcl-top-space EDIT SZENARIO
 = cell(Domicile::Cell::Flash)
+
+= customized_form_for cell_object, as: 'scenario', url: scenario_path, method: 'put' do |f|
+  .row.domcl-top-space
+    .col-12.col-sm-6
+      = f.text_field_group :name,
+              label: t('concepts.scenario.cell.new.label.name'),
+              hint: t('concepts.scenario.cell.new.hint.name')
+  .row
+    .col-12.col-sm-6
+      = f.password_field_group :password,
+              label: "Neues Passwort",
+              hint: "Lasse das Feld frei, wenn du das alte Passwort nicht ändern möchtest."
+    .col-12.col-sm-6
+      = f.password_field_group :password_confirmation,
+              label: "Neues Passwort bestätigen"
+
+  .row.domcl-top-space
+    .col-12 = form_required_hint
+    .col-12 = f.submit("Änderungen speichern")

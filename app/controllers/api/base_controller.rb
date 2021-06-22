@@ -17,7 +17,7 @@ class Api::BaseController < ActionController::Base
 
   def check_scenario_accessability!(id)
     if id.present?
-      if !current_user.scenarios.exists?(id: id) && !current_user.participated_scenarios.exists?(id: id)
+      if !current_user.scenarios.exists?(id: id) && !current_user.scenarios_through_participations.exists?(id: id)
         render json: {errors:["Szenario nicht gefunden."]}.to_json, status: :not_found
       end
     end
@@ -33,7 +33,7 @@ class Api::BaseController < ActionController::Base
 
   def check_execution_accessability!(id)
     if id.present?
-      if !current_user.executions.exists?(id: id) && !current_user.hosted_executions.exists?(id: id)
+      if !current_user.executions.exists?(id: id) && !current_user.executions_through_scenarios.exists?(id: id)
         render json: {errors:["Ergebniss nicht gefunden."]}.to_json, status: :not_found
       end
     end

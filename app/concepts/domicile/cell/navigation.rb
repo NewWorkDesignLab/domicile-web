@@ -5,9 +5,9 @@ module Domicile::Cell
     def check_active(controllers, actions = [])
       if controllers.include?(params[:controller])
         if actions.blank?
-          "active"
+          " active"
         elsif actions.include?(params[:action])
-          "active"
+          " active"
         end
       end
     end

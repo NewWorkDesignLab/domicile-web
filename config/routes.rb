@@ -32,10 +32,15 @@ Rails.application.routes.draw do
         }
 
 
-    resources :scenarios,
-            path: I18n.t('misc.routes.scenarios')
+    resources :scenarios, path: I18n.t('misc.routes.scenarios') do
+      member do
+        get 'online'
+        get 'app'
+        get 'join'
+      end
+    end
     resources :participations,
-            only: [:index, :new, :create, :show, :destroy],
+            only: [:new, :create, :show, :destroy],
             path: I18n.t('misc.routes.participations')
     resources :executions,
             only: [:show, :destroy],

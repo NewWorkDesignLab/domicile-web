@@ -1,9 +1,9 @@
 p.mb-0
   strong #{t('.label.created_at')}
-  |  #{l(scenario[:created_at], format: :short)}
+  |  #{l(cell_object[:created_at], format: :short)}
 p.mb-0
   strong #{t('.label.participations_count')}
-  |  #{scenario.participations.count}
+  |  #{cell_object.participations.count}
 p.mb-0
   strong #{t('.label.executions_count')}
   |  #{execution_count}

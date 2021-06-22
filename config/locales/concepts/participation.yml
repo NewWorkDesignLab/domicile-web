@@ -15,7 +15,7 @@ de:
             scenario: Bitte gebe die ID des Szenarios ein, dem du beitreten möchtest (z.B. 32153)
             password: Bitte gebe das Passwort des Szenarios ein. Lasse das Feld frei, wenn es nicht mit einem Passwort versehen ist
         show:
-          h1: Ihre Teilnahme am Szenario
+          h1: Ergebnisse dieses Szenarios
           h3:
             settings: 'Übersicht des Szenarios:'
             statistics: 'Statistiken:'

@@ -1,0 +1,14 @@
+h1.domcl-top-space = t('.h1')
+= cell(Domicile::Cell::Flash)
+
+p = t('.description')
+p.mb-0
+  strong #{t('concepts.scenario.cell.new.label.id')}
+  |  #{cell_object[:id]}
+p.mb-0
+  strong = "Erstellt von:"
+  |  #{cell_object.user.email}
+
+= customized_form_for cell_object, as: 'participation', url: participations_path, method: 'post' do |f|
+  = f.hidden_field :scenario_id, value: cell_object.id
+  = f.submit(t('.label.submit'))

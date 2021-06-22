@@ -11,7 +11,7 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
     opts = opts.merge( class: "form-control#{error_class(attribute)}" )
     input = text_field(attribute, opts)
 
-    @template.content_tag :div, class: 'form-group' do
+    @template.content_tag :div, class: 'mb-3' do
       "#{label}#{input}#{hint}#{error}".html_safe
     end
   end
@@ -57,7 +57,7 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
     unchecked_value = opts.delete(:unchecked_value) || '0'
     input = check_box(attribute, opts, checked_value, unchecked_value)
 
-    @template.content_tag :div, class: 'form-group form-check' do
+    @template.content_tag :div, class: 'mb-3 form-check' do
       "#{input}#{label}#{hint}#{error}".html_safe
     end
   end
@@ -83,7 +83,7 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
 
     input = select(attribute, choices, opts, html_opts)
 
-    @template.content_tag :div, class: 'form-group' do
+    @template.content_tag :div, class: 'mb-3' do
       "#{label}#{input}#{hint}#{error}".html_safe
     end
   end
@@ -133,7 +133,7 @@ class Domicile::Builder::CustomizedFormBuilder < ActionView::Helpers::FormBuilde
   end
 
   def submit(label, options = {})
-    options = options.merge(class: 'btn btn-primary mr-2 mb-2')
+    options = options.merge(class: 'btn btn-primary me-2 mb-2')
     options = options.merge(type: 'submit')
     @template.button_tag label, options
   end

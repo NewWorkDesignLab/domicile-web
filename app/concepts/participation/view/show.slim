@@ -1,30 +1,11 @@
-h1 = t('.h1')
+h1.domcl-top-space = t('.h1')
 = cell(Domicile::Cell::Flash)
 
 .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
-  = link_to t('misc.back_overview'),
-          participations_path,
+  = link_to "Zurück zum Szenario",
+          scenario_path(id: cell_object.scenario[:id]),
           class: 'btn btn-outline-secondary',
           role: 'button'
-  = link_to "Zuschauen",
-          spectate_path(id: participation[:id]),
-          class: 'btn btn-primary',
-          role: 'button'
-
-.row
-  .col-12.col-sm-6.domcl-top-space
-    h3.h5 = t('.h3.settings')
-    = cell(Scenario::Cell::Settings, scenario)
-  .col-12.col-sm-6.domcl-top-space
-    h3.h5 = t('.h3.statistics')
-    = cell(Participation::Cell::Statistics, participation)
-
-
-.row.domcl-top-space
-  .col-12
-    h3.h4 = t('.h3.execute')
-    p = t('.execute_text')
-
 
 .row.domcl-top-space
   .col-12
@@ -33,27 +14,13 @@ h1 = t('.h1')
       thead
         tr
           th scope="col" = t('.table.created_at')
-          th scope="col" = t('.table.execution')
           th scope="col" = t('.table.actions')
       tbody
-        - if participation.executions.present?
-          - participation.executions.each do |execution|
+        - if cell_object.executions.present?
+          - cell_object.executions.each do |execution|
             tr.table-sm
               td = l(execution[:created_at])
-              td kommt noch
-              td = link_to t('misc.details'), execution_path(id: execution[:id])
+              td = link_to "#{execution.images.count} Screenshots", execution_path(id: execution[:id])
         - else
           tr.table-sm
-            td.text-center colspan="3" = t('.table.no_entry')
-
-
-.row.domcl-top-space
-  .col-12
-    h3.h4 = t('.h3.manage')
-    .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
-      = link_to t('.link.destroy'),
-              participation_path(id: participation[:id]),
-              method: :delete,
-              role: 'button',
-              class: 'btn btn-danger',
-              data: { confirm: t('.confirm.destroy') }
+            td.text-center colspan="2" = t('.table.no_entry')

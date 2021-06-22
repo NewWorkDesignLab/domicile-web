@@ -1,4 +1,5 @@
 class Scenario::Operation::Update < Trailblazer::Operation
-  class Present < Trailblazer::Operation
-  end
+  step Subprocess(Scenario::Operation::Edit)
+  step Contract::Validate(key: :scenario)
+  step Contract::Persist()
 end

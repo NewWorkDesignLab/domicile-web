@@ -1,7 +1,21 @@
-h1 = t('.h1')
+h1.domcl-top-space = t('.h1')
 = cell(Domicile::Cell::Flash)
 
-= customized_form_for model, as: 'scenario', url: scenarios_path, method: 'post' do |f|
+= customized_form_for cell_object, as: 'scenario', url: scenarios_path, method: 'post' do |f|
+  .row.domcl-top-space
+    .col-12.col-sm-6
+      = f.text_field_group :name,
+              label: t('.label.name'),
+              hint: t('.hint.name')
+  .row
+    .col-12.col-sm-6
+      = f.password_field_group :password,
+              label: t('misc.form.label.password'),
+              hint: t('.hint.password')
+    .col-12.col-sm-6
+      = f.password_field_group :password_confirmation,
+              label: t('misc.form.label.password_confirm')
+
   .row.domcl-top-space
     .col-12.col-sm-4
       = f.select_group :number_rooms,
@@ -32,22 +46,5 @@ h1 = t('.h1')
               }
 
   .row.domcl-top-space
-    .col-12
-      .collapse id="new_scenario_advanced_settings"
-        .row
-          .col-12.col-sm-6
-            = f.text_field_group :name,
-                    label: t('.label.name'),
-                    hint: t('.hint.name')
-        .row
-          .col-12.col-sm-6
-            = f.password_field_group :password,
-                    label: t('misc.form.label.password'),
-                    hint: t('.hint.password')
-          .col-12.col-sm-6
-            = f.password_field_group :password_confirmation,
-                    label: t('misc.form.label.password_confirm')
-      = form_required_hint
-      .btn-toolbar role="toolbar" aria-label="#{t('misc.form.aria.button_toolbar')}"
-        button.btn.btn-secondary type="button" data-toggle="collapse" data-target="#new_scenario_advanced_settings" aria-expanded="false" aria-controls="new_scenario_advanced_settings" = t('.label.settings')
-        = f.submit(t('.label.submit'))
+    .col-12 = form_required_hint
+    .col-12 = f.submit(t('.label.submit'))

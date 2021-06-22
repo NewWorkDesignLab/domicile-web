@@ -1,12 +1,12 @@
 p.mb-0
   strong #{t('concepts.scenario.cell.new.label.id')}
-  |  #{scenario[:id]}
+  |  #{cell_object[:id]}
 p.mb-0
   strong #{t('concepts.scenario.cell.new.label.room')}
-  |  #{t('concepts.scenario.cell.new.settings.room', count: scenario[:number_rooms])}
+  |  #{t('concepts.scenario.cell.new.settings.room', count: cell_object[:number_rooms])}
 p.mb-0
   strong #{t('concepts.scenario.cell.new.label.time')}
-  |  #{t('concepts.scenario.cell.new.settings.time', count: scenario[:time_limit])}
+  |  #{t('concepts.scenario.cell.new.settings.time', count: cell_object[:time_limit])}
 p.mb-0
   strong #{t('concepts.scenario.cell.new.label.damage')}
-  |  #{t('concepts.scenario.cell.new.settings.damage', count: scenario[:number_damages])}
+  |  #{t('concepts.scenario.cell.new.settings.damage', count: cell_object[:number_damages])}

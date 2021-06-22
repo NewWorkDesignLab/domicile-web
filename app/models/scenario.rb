@@ -6,4 +6,16 @@ class Scenario < ApplicationRecord
   has_many :executions, through: :participations
 
   has_secure_password validations: false
+
+  def display_name
+    return name || "Scenario #{id}"
+  end
+
+  def is_password_secured?
+    return password_digest.present?
+  end
+
+  def is_owner?(session_user)
+    session_user == user
+  end
 end

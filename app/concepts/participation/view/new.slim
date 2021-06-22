@@ -1,7 +1,7 @@
-h1 = t('.h1')
+h1.domcl-top-space = t('.h1')
 = cell(Domicile::Cell::Flash)
 
-= customized_form_for model, as: 'participation', url: participations_path, method: 'post' do |f|
+= customized_form_for cell_object, as: 'participation', url: participations_path, method: 'post' do |f|
   .row.domcl-top-space
     .col-12.col-sm-6
       = f.number_field_group :scenario_id,

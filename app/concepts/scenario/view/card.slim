@@ -1,11 +1,26 @@
 .card.mb-2
   .card-body
-    h2.h4.card-title #{model[:index] + 1}. Szenario
-    - unless scenario[:name].blank?
-      h3.h6.card-subtitle.text-muted.mb-2.domcl-oneline-nowrap = scenario[:name]
+    h2.h4.card-title = cell_object.display_name
+    - unless cell_object[:name].blank?
+      h3.h6.card-subtitle.text-muted.mb-2.domcl-oneline-nowrap = cell_object[:id]
     .row
       .col-12
-        = cell(Scenario::Cell::Statistics, scenario)
-    .row.mt-1
-      .col-12.text-right
-        = link_to t('misc.details'), scenario_path(id: scenario[:id]), class: 'btn btn-primary', role: 'button'
+        = cell(Scenario::Cell::Statistics, cell_object)
+    .d-grid.gap-2.d-md-flex.justify-content-md-end.mt-2
+      .dropdown
+        button.btn.btn-secondary.dropdown-toggle type="button" id="dropdown-#{cell_object.id}" data-bs-toggle="dropdown" aria-expanded="false" = "Mehr Aktionen"
+        ul.dropdown-menu aria-labelledby="dropdown-#{cell_object.id}"
+          li = link_to t('concepts.scenario.cell.show.link.open_browser'), online_scenario_path(id: cell_object[:id]), class: 'dropdown-item'
+          li = link_to t('concepts.scenario.cell.show.link.open_app'), app_scenario_path(id: cell_object[:id]), class: 'dropdown-item'
+          - if cell_object.is_owner?(current_user)
+            li
+              hr.dropdown-divider
+            li = link_to t('concepts.scenario.cell.show.link.edit'),
+                        edit_scenario_path(id: cell_object[:id]),
+                        class: 'dropdown-item'
+            li = link_to t('concepts.scenario.cell.show.link.destroy'),
+                        scenario_path(id: cell_object[:id]),
+                        method: :delete,
+                        class: 'dropdown-item',
+                        data: { confirm: t('.confirm.destroy') }
+      = link_to t('misc.details'), scenario_path(id: cell_object[:id]), class: 'btn btn-primary', role: 'button'

@@ -29,9 +29,9 @@ de:
             settings: Erweiterte Einstellungen
           hint:
             password: Lasse das Feld frei, wenn du kein Passwort setzen möchtest
-            name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden. Der Name ist nur für Sie selbst sichtbar
+            name: Sie können Ihr Szenario benennen, um es von anderen, ähnlichen Szenarios zu unterscheiden. Der Name ist für alle Nutzer sichtbar.
         show:
-          h1: Mein Szenario - Übersicht
+          h1: Szenario - Übersicht
           h2: Szenario
           h3:
             settings: 'Übersicht der Einstellungen:'
@@ -40,8 +40,9 @@ de:
             users: Übersicht der Teilnehmer
             manage: Szenario managen
           link:
-            my_participation: Zu meiner Teilnahme
-            destroy: Dieses Szenario löschen
+            open_app: In App öffnen
+            open_browser: In Browser öffnen
+            destroy: Szenario löschen
             edit: Szenario bearbeiten
           confirm:
             destroy: Möchtest du dieses Szenario wirklich löschen?
@@ -50,14 +51,24 @@ de:
             created_at: Beigetreten
             actions: Aktionen
             no_entry: Es sind noch keine Teilnehmer vorhanden
-          invite_text: Nachdem Sie ein Szenario erstellt haben, können Nutzer diesem Szenario beitreten. Geben Sie dazu entweder die ID des Szenarios oder den Einladungslink weiter. Falls Sie ein Passwort vergeben haben, wird dieses zum beitreten benötigt.
+          invite_text: Sie sind der Ersteller dieses Szenarios. Wenn Sie möchten, dass andere Nutzer diesem Szenario beitreten, können Sie entweder die ID des Szenarios oder den Einladungslink weiterleiten. Falls Sie ein Passwort vergeben haben, wird dieses zum Beitreten benötigt. Der eingeladene Benutzer benötigt einen aktiven Account.
+          invite_copy_id: Szenario-ID kopieren
+          invite_copy_link: Einladungslink kopieren
         statistics:
           label:
             created_at: 'Erstellt am:'
             participations_count: 'Anzahl Teilnehmer:'
             executions_count: 'Anzahl Ausführungen:'
+        join:
+          h1: 'Szenario beitreten'
+          description: 'Sie wurden zu einem Szenario eingeladen. Wenn Sie diesem Szenario beitreten, können Sie weitere Informationen einsehen sowie das Szenario im Browser oder in der Domicile-App ausführen.'
   scenarios:
     create:
       flash:
-        create_success: Szeanrio erfolgreich erstellt
-        create_failure: Szenario konnte nicht erstellt werden. Bitte überprüfen Sie ihre Eingabe
+        success: Szeanrio erfolgreich erstellt
+        failure: Szenario konnte nicht erstellt werden. Bitte überprüfen Sie ihre Eingabe
+    update:
+      flash:
+        success: Änderungen erfolgreich gespeichert
+        failure: Änderungen konnten nicht gespeichert werden. Bitte überprüfen Sie ihre Eingabe
+
