@@ -50,6 +50,7 @@ de:
             user: Benutzer
             created_at: Beigetreten
             actions: Aktionen
+            role: Rolle
             no_entry: Es sind noch keine Teilnehmer vorhanden
           invite_text: Sie sind der Ersteller dieses Szenarios. Wenn Sie möchten, dass andere Nutzer diesem Szenario beitreten, können Sie entweder die ID des Szenarios oder den Einladungslink weiterleiten. Falls Sie ein Passwort vergeben haben, wird dieses zum Beitreten benötigt. Der eingeladene Benutzer benötigt einen aktiven Account.
           invite_copy_id: Szenario-ID kopieren
@@ -63,6 +64,10 @@ de:
           h1: 'Szenario beitreten'
           description: 'Sie wurden zu einem Szenario eingeladen. Wenn Sie diesem Szenario beitreten, können Sie weitere Informationen einsehen sowie das Szenario im Browser oder in der Domicile-App ausführen.'
   scenarios:
+    role:
+      owner: Ersteller
+      spectator: Beobachter
+      player: Spieler
     create:
       flash:
         success: Szeanrio erfolgreich erstellt

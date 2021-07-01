@@ -40,7 +40,7 @@ Rails.application.routes.draw do
       end
     end
     resources :participations,
-            only: [:new, :create, :show, :destroy],
+            only: [:new, :create, :update, :show, :destroy],
             path: I18n.t('misc.routes.participations')
     resources :executions,
             only: [:show, :destroy],

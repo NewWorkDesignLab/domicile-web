@@ -21,6 +21,14 @@ module Participation::Contract
       }
     property :password,
       virtual: true
+    property :role,
+      validates: {
+        presence: true,
+        inclusion: {
+          in: ['player', 'spectator', 'owner'],
+          allow_blank: false
+        }
+      }
 
     validate do
       if !Scenario.exists?(id: scenario_id)

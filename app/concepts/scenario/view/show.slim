@@ -31,6 +31,7 @@ h2.h3.text-muted = cell_object.display_name
           th scope="col" = t('.table.user')
           th scope="col" = t('.table.created_at')
           th scope="col" = t('.table.actions')
+          th scope="col" = t('.table.role')
       tbody
         - if cell_object.participations.present?
           - cell_object.participations.each do |participation|
@@ -38,9 +39,18 @@ h2.h3.text-muted = cell_object.display_name
               td = participation.user[:email]
               td = l(participation[:created_at])
               td = link_to "#{participation.executions.count} Ausführungen", participation_path(id: participation[:id])
+              - if cell_object.has_permissions?(current_user) && !participation.owner?
+                - params = {participation: {role: participation.player? ? 'spectator' : 'player'}}
+                - link = link_to "(Rolle wechseln)",
+                        participation_path(id: participation.id, params: params),
+                        method: :put
+                td = t("scenarios.role.#{participation.role}") + " " + link
+              - else
+                td = t("scenarios.role.#{participation.role}")
+
         - else
           tr.table-sm
-            td.text-center colspan="3" = t('.table.no_entry')
+            td.text-center colspan="4" = t('.table.no_entry')
 
 
 .row.domcl-top-space

@@ -18,4 +18,9 @@ class Scenario < ApplicationRecord
   def is_owner?(session_user)
     session_user == user
   end
+
+  def has_permissions?(session_user)
+    role = participations.find_by(user: session_user)
+    return role&.owner?.presence || false
+  end
 end

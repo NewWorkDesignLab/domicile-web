@@ -40,8 +40,12 @@ de:
   participations:
     create:
       flash:
-        create_success: Szeanrio erfolgreich beigetreten
-        create_failure: Szenario konnte nicht beigetreten werden. Bitte überprüfen Sie ihre Eingabe
+        success: Szeanrio erfolgreich beigetreten
+        failure: Szenario konnte nicht beigetreten werden. Bitte überprüfen Sie ihre Eingabe
+    update:
+      flash:
+        success: Teilnahme erfolgreich bearbeitet
+        failure: Teilnahme konnte nicht bearbeitet werden
   activerecord:
     errors:
       models:

@@ -23,16 +23,27 @@ class ParticipationsController < ApplicationController
     result = Participation::Operation::Create.(params: params, current_user: current_user)
 
     if result.success?
-      flash[:notice] = t('.flash.create_success')
+      flash[:notice] = t('.flash.success')
       redirect_to scenario_path(id: result[:model].scenario_id)
     else
-      flash[:alert] = result['contract.default'].errors.messages[:user]&.first || t('.flash.create_failure')
+      flash[:alert] = result['contract.default'].errors.messages[:user]&.first || t('.flash.failure')
       render_cell(
         page_cell: Participation::Cell::New,
         header_cell: Participation::Header::Cell::New,
         cell_object: result['contract.default']
       )
     end
+  end
+
+  def update
+    result = Participation::Operation::Update.(params: params, current_user: current_user)
+
+    if result.success?
+      flash[:notice] = t('.flash.success')
+    else
+      flash[:alert] = t('.flash.failure')
+    end
+    redirect_to scenario_path(id: result[:model].scenario_id)
   end
 
   def show
