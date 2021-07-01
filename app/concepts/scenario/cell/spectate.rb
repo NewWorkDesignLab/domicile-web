@@ -12,7 +12,7 @@ module Scenario::Cell
 
     def link
       return [].tap do |out|
-        out << "https://domicile.tobiasbohn.com/app/"
+        out << "http://domicile.tobiasbohn.com/app/"
         out << "?scenario=#{params[:id]}"
         out << "&uid=#{cell_object["uid"]}"
         out << "&access-token=#{cell_object["access-token"]}"
